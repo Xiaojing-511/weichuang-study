@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 2000px;
+        }
+        ul li{
+            width: 100px;
+            height: 50px;
+            background-color: #ccc;
+            float: left;
+        }
+        /* 解决父元素塌陷问题 */
+        ul::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .div1{
+            width: 100px;
+            height: 100px;
+            background-color: chartreuse;
+        }
+        .outer{
+            width: 600px;
+            height: 600px;
+            background-color:coral;
+            margin-left: 100px;
+            position: relative;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: cornflowerblue;
+            
+        }
+        .box1{
+            /* position: sticky; */
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .fixedbox{
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+        }
+
+        .box2{
+            background-color:chartreuse;
+            width: 1000px;
+          
+        }
+
+        .box3{
+            width: 200px;
+            height: 200px;
+            background-color: cornflowerblue;
+
+        }
+       
+       .span1{
+           color: cornsilk;
+           background-color: crimson;
+           border: 1px solid #dddddd;
+          
+       }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <div class="div1">
+        12346
+    </div>
+    <div class="outer">
+        <div class="box box1">移到上面不要动啦</div>
+        <div class="box">111111</div>
+        <div class="box fixedbox"></div>
+    </div>
+
+    <!-- 默认布局 -->
+    <!-- 块级元素默认  在上一个元素下面另起一行  宽度为父元素的100% 高度由内容撑开-->
+    <span>123456789</span>
+    <div class="box2">123456789</div>
+
+    <!-- 行级元素默认  若父元素足够宽 则会与文本内容或其他行级元素同处一行 
+                      若不够宽 则超出部分移到下一行(但一个单词不会拆开换行显示)-->
+    <div class="box3">
+        <span>123456123456S</span>
+        <span>the world is beautiful.the world is beautiful.the world is beautiful.</span>
+        <span>beautifulthworldisbeautiful.</span>
+    </div>
+    <!-- 行级元素换行或中间有空格会显示空格 -->
+    <span class="span1">123456789</span><span class="span1">123456789</span>
+    <span class="span1">123456789</span> <span class="span1">123456789</span>
+
+</body>
+</html>

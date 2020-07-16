@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outer {
+            width: 500px;
+            height: 500px;
+            background-color: #cccccc;
+            /* 解决父元素与子元素的上边距一起移动 */
+            overflow: hidden;       
+        }
+
+        .outer .box1 {
+            width: 100px;
+            height: 100px;
+            background-color: chartreuse;
+            border: 1px solid black;
+            /* padding: 20px; */
+            margin: 20px;
+        }
+
+        .outer .box1 :nth-child(1) {
+            border: 1px solid;
+        }
+
+
+        .list {}
+
+        .list li {
+            list-style-type: none;
+            width: 100px;
+            height: 30px;
+            background-color: blanchedalmond;
+            margin: 20px 0;
+        }
+
+        .list1 li {
+            display: inline-block;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 上下外边距合并 -->
+    <div class="outer">
+
+        <div class="box1"><span>1234567890</span></div>
+        <div class="box1"><span>1234567890</span></div>
+        <div class="box1"><span>1234567890</span></div>
+    </div>
+
+    <ul class="list">
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+    </ul>
+
+    <!-- 左右外边距 -->
+    <ul class="list list1">
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+    </ul>
+</body>
+
+</html>
