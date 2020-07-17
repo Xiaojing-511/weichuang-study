@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            width: 600px;
+            background-color: #dddddd;
+            margin: 50px 200px;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 50px;
+        }
+        .box1:hover{
+            background-color: darkcyan;
+        }
+        .box2:hover{
+            background-color: chartreuse;
+        }
+        .box3:hover{
+            background-color: darkorchid;
+        }
+        .box4:hover{
+            background-color: aquamarine;
+        }
+        .box5:hover{
+            background-color: cornflowerblue;
+        }
+        .box6:hover{
+            background-color: cyan;
+        }
+        .box7:hover{
+            background-color: tomato;
+        }
+        .box8:hover{
+            background-color: salmon;
+        }
+        .box9:hover{
+            background-color: forestgreen;
+        }
+
+        /* #bgc{
+            width: 200px;
+            height: 200px;
+            background-color:rgb(255, 255, 255);
+            float: right;
+            display: flex;
+        } */
+        /* 解决父元素塌陷 */
+        /* #bgc::after{
+            content: "";
+            display: block;
+            clear: both;
+        } */
+        /* #bgc ul li{
+            width: 50px;
+            height: 50px;
+            background-color: royalblue;
+            display: inline-block;
+        } */
+
+        
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+        <div class="box box3"></div>
+        <div class="box box4"></div>
+        <div class="box box5"></div>
+        <div class="box box6"></div>
+        <div class="box box7"></div>
+        <div class="box box8"></div>
+        <div class="box box9"></div>
+    </div>
+
+   <!-- <div id="bgc">
+       <ul>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+       </ul>
+   </div> -->
+</body>
+</html>
