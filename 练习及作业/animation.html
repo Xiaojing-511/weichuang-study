@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background: brown;
+            /* animation: 动画效果 自定义动画名称 持续时间 延迟时间 重复次数（infinite为一直） */
+            animation: ease move 2s infinite;
+        }
+
+        /* 按时间划分 
+           move是自定义的名字
+        */
+
+        @keyframes move {
+            0% {
+                width: 200px;
+                margin-left: 100px;
+            }
+            50%{
+                width: 100px;
+                margin-left: 150px;
+            }
+            100%{
+                width: 200px;
+                margin-left: 100px;
+            }
+        }
+
+        #box2{
+            width: 200px;
+            height: 200px;
+            background: cadetblue;
+            margin: 20px;
+            animation: ease rotateBox 2s ;
+        }
+
+        @keyframes rotateBox {
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+        #box1:hover{
+            /* 设置对象动画的状态 */
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1">
+
+    </div>
+    <div id="box2"></div>
+</body>
+
+</html>

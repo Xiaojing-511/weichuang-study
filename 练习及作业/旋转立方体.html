@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: black;
+            perspective: 500px;
+        }
+        #container{
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            position: relative;
+            transform-style: preserve-3d;
+
+            animation: ease rotateBox 2s 2;
+        }
+
+        @keyframes rotateBox {
+            from{
+                transform: rotateY(0deg);
+            }
+            to{
+                transform: rotateY(360deg);
+            }
+        }
+        .plane{
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.5);
+            font-size: 30px;
+            text-align: center;
+            line-height: 200px;
+            border-radius: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .plane1{
+            transform: translateZ(100px);
+        }
+
+        .plane2{
+            transform: translateX(100px)  rotateY(90deg);
+        }
+
+        .plane3{
+            transform: translateZ(-100px) rotateY(180deg);
+        }
+        .plane4{
+            transform: translateX(-100px) rotateY(-90deg);
+        }
+        .plane5{
+            transform: translateY(-100px) rotateX(90deg);
+        }
+
+        .plane6{
+            transform: translateY(100px) rotateX(90deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="plane plane1">1</div>
+        <div class="plane plane2">2</div> 
+        <div class="plane plane3">3</div>
+        <div class="plane plane4">4</div>
+        <div class="plane plane5">5</div>
+        <div class="plane plane6">6</div>
+    </div>
+</body>
+</html>

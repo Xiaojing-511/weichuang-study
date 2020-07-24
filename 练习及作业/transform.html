@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: aquamarine;
+            margin-bottom: 20px;
+        }
+        #box1:hover{
+            /* 相对于自己原来的位置位移 */
+            transform: translateY(100px);
+        }
+
+        #box2:hover{
+             /* 沿着中心点旋转 */
+            transform: rotate(45deg);
+        }
+
+        #box3:hover{
+            transform-origin: 0 0;
+            transform: rotate(45deg);
+        }
+
+        #box4:hover{
+            /* 缩放 */
+            transform: scale(0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="box1" class="box"></div>
+    <div id="box2" class="box"></div>
+    <div id="box3" class="box"></div>
+    <div id="box4" class="box"></div>
+</body>
+</html>
