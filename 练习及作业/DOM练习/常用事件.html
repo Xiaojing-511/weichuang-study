@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background: brown;
+            /* margin: 50px auto; */
+        }
+    </style>
+</head>
+
+<body>
+    <form id="myForm" action="https://www.baidu.com">
+        <p>
+            用户名：<input id="userName" type="text" value="请输入用户名">
+        </p>
+        <p>
+            密码：<input id="userPw" type="password">
+        </p>
+        <select name="sex" id="sex">
+            <option value="man">man</option>
+            <option value="woman">woman</option>
+        </select>
+        <p>
+            <input id="mySearch" type="text" value="搜索你想要的。。。">
+        </p>
+        <p>
+            <textarea name="" id="myText" cols="30" rows="10"></textarea>
+        </p>
+        <button type="submit">提交</button>
+    </form>
+    <div id="box1"></div>
+    <script>
+        // focus blur
+        var oUsername = document.getElementById('userName');
+        oUsername.onfocus = function (e) {
+            if (this.value == "请输入用户名") {
+                this.value = "";
+            }
+        };
+
+        oUsername.onblur = function (e) {
+            if (this.value == "") {
+                this.value = "请输入用户名";
+            }
+        };
+
+        // change
+        var mySelect = document.getElementById('sex');
+        mySelect.onchange = function (e) {
+            console.log("sex is changed");
+            // location.reload();
+        };
+
+        var oSearch = document.getElementById('mySearch');
+        oSearch.onfocus = function (e) {
+            if (this.value == "搜索你想要的。。。") {
+                this.value = "";
+            }
+        };
+
+        oSearch.onblur = function (e) {
+            if (this.value == "") {
+                this.value = "搜索你想要的。。。";
+            }
+        };
+
+        // 键盘事件
+        // keydown keyup
+        // 常用于搜索引擎的联想
+        oSearch.onkeyup = function (e) {
+            var oText = document.getElementById('myText');
+            oText.innerHTML = oSearch.value;
+        };
+
+        // 鼠标事件
+        // mouseover mouseout mousemove
+        var myBox = document.querySelector('#box1');
+        myBox.addEventListener('mouseover', function (e) {
+            myBox.style.background = "yellow";
+        }, false);
+
+        myBox.addEventListener('mouseout', function (e) {
+            myBox.style.background = "brown";
+        }, false);
+
+        var fn = function (e) {
+            var random1 = Math.floor(Math.random() * 9);
+            var random2 = Math.floor(Math.random() * 9);
+            var random3 = Math.floor(Math.random() * 9);
+            var color = '#';
+            color += random1;
+            color += random1;
+            color += random2;
+            color += random2;
+            color += random3;
+            color += random3;
+            myBox.style.background = color;
+        };
+        myBox.addEventListener('mousemove', fn, false);
+
+        // mousedown  mouseup
+        myBox.addEventListener('mousedown', function (e) {
+            myBox.removeEventListener('mousemove', fn, false);
+        }, false);
+
+        myBox.addEventListener('mouseup', function (e) {
+            myBox.addEventListener('mousemove', fn, false);
+        }, false);
+
+        var oForm = document.getElementById('myForm');
+        // oForm.addEventListener('submit', function (e) {
+        //     return false;
+        // }, false);
+
+        oForm.onsubmit=function(e){
+            // 提交不跳转
+            return false;
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

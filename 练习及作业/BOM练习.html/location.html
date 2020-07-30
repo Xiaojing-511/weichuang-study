@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="./location.html" method="GET">
+        <input type="text" name="form1" id="text1" >
+        <input type="submit" value="submit">
+    </form>
+    <button id="btn1">重新加载页面</button>
+    <button id="btn2">跳转到百度页面，不保留历史</button>
+    <script>
+        console.log(location.search);
+        console.log(location.href);
+        var btn11 = document.getElementById('btn1');
+        btn11.onclick=function(){
+            location.reload();
+        }
+
+        var btn22 = document.getElementById('btn2');
+        btn22.onclick=function(){
+            location.replace("https://www.baidu.com");
+        }
+    </script>
+</body>
+</html>

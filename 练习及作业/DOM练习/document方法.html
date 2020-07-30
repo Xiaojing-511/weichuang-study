@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="list">
+        <li>strat</li>
+    </ul>
+    <button id="btn1">添加</button>
+    <button id="btn2">移除最后一个元素</button>
+    <button id="btn3">替换第一个</button>
+    <button id="btn4">在第一个前面插入</button>
+    <button id="btn5">深克隆最后一个元素</button>
+    <button id="btn6">浅克隆最后一个元素</button>
+    <button id="btn-clear">清除添加按钮的效果</button>
+    <script>
+
+        // 绑定事件的方式：1、on+事件名  2、事件监听
+        var oUl = document.getElementById('list');
+
+        // 添加
+        var fn1 = function (e) {
+            var li1 = document.createElement('li');
+            li1.innerHTML = "<i>append li1</i>";
+            oUl.appendChild(li1);
+        };
+        var oBtn1 = document.querySelector('#btn1');
+        oBtn1.addEventListener('click', fn1, false);
+        // 移除监听器
+        var oBtn_clear1 = document.getElementById('btn-clear');
+        oBtn_clear1.addEventListener('click', function (e) {
+            oBtn1.removeEventListener('click', fn1, false);
+        }, false);
+
+        // 移除
+        var oBtn2 = document.querySelector('#btn2');
+        oBtn2.addEventListener('click', function (e) {
+            oUl.removeChild(oUl.lastElementChild);
+        }, false);
+
+        // 替换
+        var oBtn3 = document.querySelector('#btn3');
+        oBtn3.addEventListener('click', function (e) {
+            var li2 = document.createElement('li');
+            li2.innerHTML = "replace li";
+            oUl.replaceChild(li2, oUl.firstElementChild);
+        }, false);
+
+
+        // 插入
+        var oBtn4 = document.querySelector('#btn4');
+        oBtn4.addEventListener('click', function (e) {
+            var li3 = document.createElement('li');
+            li3.innerHTML = "insert li";
+            oUl.insertBefore(li3, oUl.firstElementChild);
+        }, false);
+
+        // 深克隆
+        var oBtn5 = document.querySelector('#btn5');
+        oBtn5.addEventListener('click', function (e) {
+            var li4 = oUl.lastElementChild;
+            var cloneLi1 = li4.cloneNode(true);
+            oUl.appendChild(cloneLi1);
+        }, false);
+
+        // 浅克隆
+        var oBtn6 = document.querySelector('#btn6');
+        oBtn6.addEventListener('click', function (e) {
+            var li4 = oUl.lastElementChild;
+            var cloneLi2 = li4.cloneNode(false);
+            oUl.appendChild(cloneLi2);
+        }, false);
+
+        // 对象属性
+        console.log(oUl.id);
+        oUl.id = 'listTemp';
+        oUl.className = 'ul1';
+        // 添加的是对象属性 而不是内联的属性
+        // oUl.cc='aa';
+        // console.log(oUl);
+        // console.log(oUl.cc);
+
+        // 自定义属性
+        // 只能通过这种方式来创建和获取
+        oUl.setAttribute('cc', 'aa');
+        // console.log(oUl.cc);  undefined
+        console.log(oUl.getAttribute('cc'));
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

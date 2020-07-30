@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            height: 2000px;
+            position: relative;
+        }
+
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: coral;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1"></div>
+    <script>
+        // 滚动条及打开页面
+        var return1 = document.getElementById('div1');
+        return1.onclick = function () {
+            // scrollTo(0,0);
+            // scrollBy(0, -50);
+            open('https://www.baidu.com');
+        }
+
+        // 计时器
+        var time1 = setTimeout(function () {
+            document.write("延时后显示");
+        }, 1000);
+        clearTimeout(time1);
+
+        var i = 0;
+        var time2 = setInterval(function () {
+            if (i == 5) {
+                clearInterval(time2);
+            }
+            document.write("嘿嘿嘿！");
+            i++;
+        }, 1000);
+
+    </script>
+</body>
+
+</html>

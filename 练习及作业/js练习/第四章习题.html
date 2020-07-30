@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 判断年龄
+        function judgeAge(age) {
+            switch (true) {
+                case age < 14:
+                    console.log("儿童");
+                    break;
+                case (14 <= age && age < 24):
+                    console.log("青少年");
+                    break;
+                case (24 <= age && age < 40):
+                    console.log("青年");
+                    break;
+                case (40 <= age && age < 60):
+                    console.log("中年");
+                    break;
+                case age >= 60:
+                    console.log("老年");
+                    break;
+                default:
+                    console.log("error");
+            }
+        }
+
+        judgeAge(68);
+
+        // 提示星期
+        // function judgeWeek() {
+        //     var week = prompt("请输入数字0~9");
+        //     week = Number(week);
+        //     switch (week) {
+        //         case 0:
+        //             alert("星期日");
+        //             break;
+        //         case 1:
+        //             alert("星期一");
+        //             break;
+        //         case 2:
+        //             alert("星期二");
+        //             break;
+        //         case 3:
+        //             alert("星期三");
+        //             break;
+        //         case 4:
+        //             alert("星期四");
+        //             break;
+        //         case 5:
+        //             alert("星期五");
+        //             break;
+        //         case 6:
+        //             alert("星期六");
+        //             break;
+
+        //     }
+        // }
+        // judgeWeek();
+        
+        // 计算阶乘
+        function factorial(n){
+            if(n == 0 || n == 1){
+                return 1;
+            }else{
+                return n*factorial(n-1);
+            }
+        }
+
+        console.log(factorial(10));
+
+        // 计算阶乘和
+        function factorialSum(n){
+            if(n == 0 || n == 1){
+                return factorial(1);
+            }else{
+                return factorial(n)+factorialSum(n-1);
+            }
+        }
+
+        console.log(factorialSum(10));
+
+        // 数字图案
+        // function numberGraph(n){
+        //     var str = "";
+        //     for(var i = 1; i <= n; i++){
+        //         for(var j = 1; j <= i ; j++){
+        //             str += j;
+        //             str += ' ';
+        //         }
+        //         console.log(str);
+        //         str = "";
+        //     }
+        // }
+
+        // numberGraph(5);
+
+        // *图形
+        // function starGraph(n){
+        //     var str = "";
+        //     for(var i = 1; i <= n; i++){
+        //         for(var j = n-i; j >= 1; j--){
+        //             str += ' ';
+        //         }
+        //         for(var k = 1; k <= i; k++){
+        //             str += '*';
+        //             str += ' ';
+        //         }
+        //         console.log(str);
+        //         str = "";
+        //     }
+        // }
+
+        // starGraph(5);
+
+        // 求数
+        function getResult(){
+            for(var i = 100; i < 1000; i++){
+                if((i % 4 == 2)&&(i % 7 == 3)&&(i % 9 == 5)){
+                    return i;
+                }
+            }
+            return "error";
+        }
+
+        console.log(getResult());
+
+        // 求满足要求的四位数
+
+        // function getResult1(){
+        //     for(var i = 1000; i < 10000; i++){
+        //         if(i % 13 == 0){
+        //             var a4 = Math.floor(i/1000);
+        //             var b3 = i - 1000*a4;
+        //             var a3 = Math.floor(b3/100);
+        //             var b2 = b3 - 100*a3;
+        //             var a2 = Math.floor(b2/10);
+
+        //             if(a4 == a3 + a2){
+        //                 console.log(i);
+        //             }
+        //         }
+        //     }
+        // }
+        
+        // getResult1();
+
+        
+    </script>
+</body>
+
+</html>

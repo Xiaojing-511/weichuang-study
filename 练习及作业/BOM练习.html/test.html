@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 900px;
+            height: 500px;
+            background: cornsilk;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .btn1 {
+            width: 100px;
+            height: 50px;
+            background: darkgray;
+            color: chartreuse;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <button class="btn1">停止BGM</button>
+    </div>
+    <audio src="https://music.163.com/song?id=1465400681&userid=2077561945" controls>111</audio>
+
+    <script>
+        var box1 = document.getElementById('container');
+        var flag = -1;
+        var time1 = setInterval(() => {
+            flag++;
+            if (flag == 5) {
+                flag = 0;
+            }
+            switch (flag) {
+                case 0:
+                    box1.style.backgroundColor = 'red';
+                    break;
+                case 1:
+                    box1.style.backgroundColor = 'orange';
+                    break;
+                case 2:
+                    box1.style.backgroundColor = 'yellow';
+                    break;
+                case 3:
+                    box1.style.backgroundColor = 'green';
+                    break;
+                case 4:
+                    box1.style.backgroundColor = 'blue';
+                    break;
+                default:
+                    break;
+            }
+        }, 100);
+
+        var btn11 = document.querySelector('.btn1');
+        btn11.onclick = function () {
+            clearInterval(time1);
+        }
+    </script>
+</body>
+
+</html>

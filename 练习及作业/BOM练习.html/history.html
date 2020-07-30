@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>第一个页面</h1>
+    <a href="./history_2.html">下一个页面</a>
+    <a href="./history_3.html">下两个页面</a>
+    <button id="btn1">下一个页面</button>
+    <button id="btn2">下两个页面</button>
+    <script>
+        var btn11=document.getElementById('btn1');
+        btn11.onclick=function(){
+            history.forward();
+        }
+        var btn22=document.getElementById('btn2');
+        btn22.onclick=function(){
+            history.go(2);
+        }
+    </script>
+</body>
+</html>

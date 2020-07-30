@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1
+        // function mathTest(x) {
+        //     console.log(Math.pow(x, 2));
+        //     console.log(Math.sqrt(x));
+        //     console.log(Math.log(x));
+        // }
+
+        // var xx = prompt("请输入数值", "");
+        // mathTest(xx);
+
+        // 2
+        // function randomTest(){
+        //     console.log(Math.floor(Math.random()*101));
+        // }
+
+        // randomTest();
+
+        // 3
+        // 设计一个页面，在页面上显示信息“现在是XXXX年XX月XX日Xx点XX分XX秒（星期X)，欢迎您的到访！
+        // function dateTest(){
+        //     var nowDate = new Date();
+        //     document.write("现在是"+nowDate.getFullYear()+"年"+(nowDate.getMonth()+1)+"月"+nowDate.getDate()+"日"+nowDate.getHours()+"点"+nowDate.getMinutes()+"分"+nowDate.getSeconds()+"秒（星期"+nowDate.getDay()+"），欢迎您的到访！");
+        // }
+
+        // dateTest();
+
+        // 4
+        // function collectDigits(s) {
+        //     var str = "";
+        //     for (var i = 0; i < s.length; i++) {
+        //         if(parseInt(s.charAt(i))>=0&&parseInt(s.charAt(i))<=9){
+        //             str += parseInt(s.charAt(i));
+        //         }
+        //     }
+        //     console.log(str);
+        // }
+        // var s = "string1233";
+        // collectDigits(s);
+
+        // 5
+        // function merge(s1,s2){
+        //     var str = "";
+        //     for(var i = 0; i < Math.min(s1.length,s2.length); i ++){
+        //         str += s1.charAt(i);
+        //         str += s2.charAt(i);
+        //     }
+        //     (s1.length >=s2.length)?(str+=s1.substr(i)):(str+=s2.substr(i));
+        //     console.log(str);
+        // }
+        // var s1 = "12345";
+        // var s2 = "abcdefg";
+        // merge(s1,s2);
+
+        // 6
+        // function scoreTest() {
+        //     var score = 0;
+        //     var scoreSum = 0;
+        //     var scoreArr = new Array();
+        //     var failScore = new Array();
+        //     for (var i = 0; i < 7; i++) {
+        //         score = parseInt(prompt("输入第"+(i + 1)+"门成绩"));
+        //         scoreArr.push(score);
+        //         scoreSum += score;
+        //         if (score < 60) {
+        //             failScore.push(score);
+        //         }
+        //     }
+        //     console.log(scoreSum);
+        //     console.log(scoreSum/7);
+        //     console.log(failScore);
+        // }
+
+        // scoreTest();
+
+        // 7
+        // function reFib(n) {
+        //     var rearr = [];
+        //     var f1 = 1;
+        //     var f2 = 1;
+        //     var temp = 0;
+        //     for (var i = 1; i <= n; i++) {
+        //         if (i <= 2) {
+        //             rearr.push(1);
+        //         } else {
+        //             temp = f1 + f2;
+        //             f1 = f2;
+        //             f2 = temp;
+        //             rearr.push(temp);
+        //         }
+        //     }
+        //     return rearr.reverse();
+        // }
+
+        // var result = reFib(40);
+        // for (var i = 0; i < 40; i++) {
+        //     if (i % 6 == 0) {
+        //         document.write("<br>");
+        //     }
+        //     document.write(result[i]+'\t');
+        // }
+
+        // 8
+
+
+        // function IsLeapYear(year) {
+        //     if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+        //         return true;
+        //     }
+        //     else {
+        //         return false;
+        //     }
+        // }
+
+        // function DayOfYear(d) {
+        //     var result = 0;
+        //     var months = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+        //     var aDay = d.split(','),
+        //         year = parseInt(aDay[0]),
+        //         month = parseInt(aDay[1]),
+        //         day = parseInt(aDay[2]);
+
+        //     if (IsLeapYear(year)) {
+        //         months[1] = 29;
+        //     }
+        //     for (var i = 0; i < month - 1; i++) {
+        //         result += months[i];
+        //     }
+        //     result += day;
+
+        //     return result;
+        // }
+        // var day = prompt("请输入日期",'2000,2,8');
+
+        // document.write(DayOfYear(day));
+    </script>
+</body>
+
+</html>

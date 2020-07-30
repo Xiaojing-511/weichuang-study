@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: burlywood;
+        }
+        .ul1{
+            width: 100px;
+            background: chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <ul class="ul1">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    <script>
+        // var oDiv1 = document.getElementById('div1');
+        // var oUl1 = oDiv1.getElementsByClassName('ul1')[0];
+        // oUl1.style.color="red";
+        // console.log(oUl1);
+
+        var oLis = document.querySelectorAll('#div1 .ul1 li');
+        // var oLi = document.querySelector('#div1 .ul1 li');
+        console.log(oLis);
+        // oLis[0].style.color="red";
+        // oLi.style.color="white";
+    </script>
+</body>
+</html>

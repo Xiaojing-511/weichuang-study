@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="s1 s2">我是h1标签<p>p标签包裹的一段文字</p>
+        <!-- 一段注释 -->
+    </h1>一段文字
+    <div id="box1"></div>
+    <script>
+        var h11 = document.querySelector('.s1');
+        // console.log(h11.firstChild);
+        // console.log(h11.firstChild.nodeType);
+        // console.log(h11.firstChild.nodeValue);
+
+
+        // console.log(h11.firstElementChild.nodeType);
+        // console.log(h11.className);
+        // console.log(h11.classList);
+
+        // console.log(h11.children);
+        // console.log(h11.childNodes);
+
+        // console.log(h11.getAttributeNode('class'));
+        // console.log(h11.getAttributeNode('class').nodeType);
+        // console.log(h11.getAttributeNode('class').nodeValue);
+
+        // console.log(h11.nextSibling.nodeType);
+        // console.log(h11.nextElementSibling.getAttributeNode('id').nodeValue);
+
+        var box11 = document.getElementById('box1');
+        // console.log(box11.previousSibling.nodeValue);
+        // console.log(box11.previousElementSibling.getAttributeNode('class').nodeValue);
+    
+        console.log(box11.parentNode.nodeType);
+
+        console.log(box11.offsetParent.nodeType);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 随机数比较大小
+        var opr1 = Math.random();
+        var opr2 = Math.random();
+        console.log(opr1);
+        console.log(opr2);
+        var result = (opr1>opr2)?opr1:opr2;
+        console.log(result);
+
+        // 判断闰年
+        function judgeYear(year){
+            if((year%4 == 0 &&year%100 != 0)||year%400 == 0)
+                return true;
+        }
+
+        var today = new Date();
+        var year = today.getFullYear();
+        console.log(judgeYear(year));
+
+        
+    </script>
+</body>
+</html>
