@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 500px;
+            height: 500px;
+            background: burlywood;
+        }
+
+        #inner {
+            width: 200px;
+            height: 200px;
+            background: crimson;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="inner"></div>
+    </div>
+    <script>
+        var oContainer = document.querySelector('#container');
+        oContainer.addEventListener('click', function (e) {
+            console.log(this.id);
+            // console.log(e.bubbles);
+        }, false)
+
+        var oInner = document.querySelector('#inner');
+        oInner.addEventListener('click', function (e) {
+            console.log(this.id);
+            // 阻止事件冒泡（从里往外）
+            e.stopPropagation();
+        }, false)
+    </script>
+</body>
+
+</html>

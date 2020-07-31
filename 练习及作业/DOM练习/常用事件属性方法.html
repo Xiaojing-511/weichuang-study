@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background: burlywood;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="box1"></div>
+    <a id="aa" href="https://www.baidu.com">跳转到百度</a>
+    <script>
+        // clientX clientY target(事件源)
+        var oBox1 = document.querySelector('#box1');
+        oBox1.onclick = function (e) {
+            console.log(e.clientX, e.clientY);
+            console.log(e.target.id);
+        }
+        
+        // keyCode
+        document.onkeydown = function (e) {
+            console.log(e.keyCode);
+        }
+
+        // 阻止默认行为
+        var oA = document.getElementById('aa');
+        oA.onclick = function(e){
+            e.preventDefault();
+            console.log('阻止跳转');
+        }
+
+    </script>
+</body>
+
+</html>

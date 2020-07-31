@@ -116,24 +116,22 @@
 
         var oForm = document.getElementById('myForm');
         // oForm.addEventListener('submit', function (e) {
-        //     return false;
+        //     // return false;
+        //     e.preventDefault();
         // }, false);
 
-        oForm.onsubmit=function(e){
+        oForm.onsubmit = function (e) {
             // 提交不跳转
-            return false;
+            // return false;
+            e.preventDefault();
         };
 
+        // load 一张页面或一幅图像完成加载
+        window.onload = function (e) {
+            console.log('页面加载完毕');
+        };
 
-
-
-
-
-
-
-
-
-
+        console.log("页面即将加载完毕");
 
     </script>
 
