@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="list">
+        <li>strat</li>
+    </ul>
+    <button id="btn1">添加</button>
+    <button id="btn2">移除最后一个元素</button>
+    <button id="btn3">替换第一个</button>
+    <button id="btn4">在第一个前面插入</button>
+    <button id="btn5">深克隆最后一个元素</button>
+    <button id="btn6">浅克隆最后一个元素</button>
+    <button id="btn-clear">清除添加按钮的效果</button>
+    <script>
+
+        // 绑定事件的方式：1、on+事件名  2、事件监听
+        var oUl = document.getElementById('list');
+
+        // 自定义对象属性 
+        oUl.cc = 'aa';
+        console.log(oUl);
+        console.log(oUl.cc);
+
+        // DOM属性(标签中)
+        console.log(oUl.id);
+        oUl.id = 'listTemp';
+        oUl.className = 'ul1';
+
+        // 自定义DOM属性（在标签里）
+        // 只能通过这种方式来创建和获取(或直接在标签中写)
+        oUl.setAttribute('cc', 'aa');
+        // console.log(oUl.cc);  undefined
+        console.log(oUl.getAttribute('cc'));
+
+    </script>
+</body>
+
+</html>

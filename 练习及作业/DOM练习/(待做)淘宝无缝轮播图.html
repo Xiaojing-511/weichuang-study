@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 520px;
+            height: 280px;
+            overflow: hidden;
+            padding-top: 100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #inner {
+            display: flex;
+            transform: translateX(0);
+            transition: transform 1s ease;
+        }
+
+        #circle {
+            width: 40px;
+            position: absolute;
+            bottom: 15px;
+            left: 225px;
+            background: rgba(255, 255, 255, .3);
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            padding: 2px;
+
+        }
+
+        #circle li {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+            /* padding-top: 8px; */
+            background: #fff;
+            /* margin: 3px; */
+        }
+
+        #circle li.active {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="inner">
+            <img class="myImg" src="https://aecpm.alicdn.com/simba/img/TB1XotJXQfb_uJkSnhJSuvdDVXa.jpg">
+            <img class="myImg" src="https://aecpm.alicdn.com/simba/img/TB1JNHwKFXXXXafXVXXSutbFXXX.jpg">
+            <img class="myImg" src="https://aecpm.alicdn.com/simba/img/TB183NQapLM8KJjSZFBSutJHVXa.jpg">
+        </div>
+        <ul id="circle">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        var oInner = document.querySelector('#inner');
+        var oLi = document.getElementsByTagName('li');
+        var i = 0;
+        var fun2 = function (e) {
+            for (var j = 0; j < oLi.length; j++) {
+                oLi[j].className='';
+            }
+            switch (i) {
+                case 0:
+                    oInner.style.transform = 'translateX(-520px)';
+                    oLi[i+1].className='active';
+                    i++;
+                    break;
+                case 1:
+                    oInner.style.transform = 'translateX(-1040px)';
+                    oLi[i+1].className='active';
+                    i++;
+                    break;
+                case 2:
+                    oInner.style.transform = 'translateX(0px)';
+                    oLi[0].className='active';
+                    i = 0;
+                    break;
+            }
+        }
+
+        var timer = setInterval(fun2, 2000);
+
+        oInner.onmouseover = function () {
+            clearInterval(timer);
+        }
+        oInner.onmouseout = function () {
+            timer = setInterval(fun2, 2000);
+        }
+    </script>
+</body>
+
+</html>

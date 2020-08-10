@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="myUl">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <script>
+        // var 不能产生块级作用域 在for中的i 在外部还可以访问到 但在函数中的i在外部不可访问到
+        // for (var i = 0; i < 3; i++) {
+        //     console.log(i);
+        // }
+        // console.log(i + '----');
+
+        // var oUl = document.getElementById('myUl');
+        // var oLi = oUl.getElementsByTagName('li');
+        // let可以产生块级作用域
+        // for (let i = 0; i < oLi.length; i++) {
+        //     oLi[i].onclick = function () {
+        //         console.log(oLi[i].innerHTML);
+        //     }
+        // }
+
+        // 普通数据类型在调用方法时  底层会自动变为引用类型（a= Number(a)）
+        var a = 23.67;
+        console.log(a.toFixed(1));
+
+        var now = new Date();
+        // 实际上是调用了toString()方法
+        console.log(now);
+        console.log(typeof now);
+        // 字符串
+        var now2 = Date();
+        console.log(typeof now2);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #Ul1 {
+            background: darkgray;
+        }
+
+        #Ul1 li {
+            background: darkgreen;
+        }
+
+        #container {
+            width: 300px;
+            height: 300px;
+            background: #ccc;
+        }
+
+        #inner {
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="Ul1">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+
+    <div id="container">
+        <div id="inner"></div>
+    </div>
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+
+        $(function () {
+            // 事件绑定
+            // on()
+            // 事件委托
+            $('#Ul1')
+                .on('click', 'li', function () {
+                    console.log(this.innerHTML);
+                });
+
+            // 鼠标事件
+            // mouseover()   mouseout()     存在冒泡
+            // mouseenter()  mouseleave()   不冒泡
+
+            var $inner = $('#inner');
+            $('#container').on('mouseover',function(){
+                console.log(111);
+            })
+            // $inner.on('mouseover',function(){
+            //     console.log(222);
+            // });
+
+            $inner.on('mouseenter',function(){
+                $(this).css('background');
+            });
+
+        });
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Symbol()
+        //Symbol函数前不能使用new命令
+        //凡是属性名属于 Symbol 类型，就都是独一无二的，可以保证不会与其他属性名产生冲突
+        //Symbol函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述
+        // Symbol函数的参数只是表示对当前 Symbol 值的描述，因此相同参数的Symbol函数的返回值是不相等的
+
+
+        let s1 = Symbol('s1');
+        let obj1 = {
+            name: 'lisi',
+            [s1]: 'sss',
+            [Symbol('s2')]: 'sss2'
+        }
+
+        // 获取属性值
+        console.log(obj1[s1]);
+        // console.log(obj1[Symbol('s2')]);  //获取不到
+
+        // 增加属性
+        obj1[Symbol('s3')] = 'sss3';
+        obj1[s1] = 'sss1';
+        console.log(obj1);
+
+        // symbol属性无法通过循环取到   =>   只能一个一个拿
+        for (let p in obj1) {
+            console.log(p);
+            console.log(obj1[p]);
+        }
+    </script>
+</body>
+
+</html>

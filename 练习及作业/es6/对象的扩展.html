@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 对象的简写  属性的简写：属性名和变量名一样 */
+        let name = 'lisi';
+        let age = 23;
+        let obj1 = {
+            name,
+            age,
+            eat: function(){
+                console.log(name + ' is eating....');
+            }
+        }
+        console.log(obj1);
+        obj1.eat();
+
+        /* 属性名表达式 [] */
+        var oHeight = 'height';
+        obj1[oHeight] = '183cm';
+        console.log(obj1[oHeight]);
+
+        /* Object.is()  判断两个值是否严格相等 */
+
+        console.log(Object.is('111',111)); //f
+        console.log(Object.is(+0,-0));  //f
+        console.log(NaN === NaN); //f
+        console.log(Object.is(NaN,NaN));  //t
+
+        /* Object.assign() 对象的合并  浅拷贝 */
+        let obj2 = {
+            sex: 'man'
+        } 
+        // let obj3 = Object.assign(obj1,obj2);    //obj1改变
+        let obj3 = Object.assign({},obj1,obj2);  //obj1不变
+        console.log(obj3);
+        console.log(obj1);
+
+        /* 对象的遍历 for...in  */
+        for(p in obj3){
+            console.log(p+': '+obj3[p]);
+        }
+
+        /* 判断对象属性是否存在 in */
+        console.log('name' in obj3);
+        console.log('name1' in obj3);
+
+
+
+    </script>
+</body>
+</html>

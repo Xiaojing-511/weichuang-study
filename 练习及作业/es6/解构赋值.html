@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 数组的解构 */
+        let [a0, a1, a2] = [1, 2, 3];
+        console.log(a0, a1, a2);
+
+        let arr1 = [1, 2, 3];
+        let [b0, b1, b2] = arr1;
+        console.log(b0, b1, b2);
+
+        let [c0, , c2] = arr1;
+        console.log(c0, c2);
+
+        // x,y值互换
+        let [x, y] = [2, 3];
+        [y, x] = [x, y];
+        console.log(x, y);
+
+        /* 对象的解构 */
+
+        let obj1 = {
+            name: 'zhangsan',
+            age: 20
+        }
+        // 必须变量名要和属性名一致
+        let { name, age } = obj1;
+        console.log(name, age);
+
+        // 可以起别名来获取 (原名失效)
+        let { name: myName, age: myAge } = obj1;
+        console.log(myName, myAge);
+
+        /* 字符串的解构 */
+
+        let str1 = 'string';
+        let [s0, s1, s2, s3, s4, s5] = str1;
+        console.log(s0, s1, s2, s3, s4, s5);
+
+        let [st0, , st2] = str1;
+        console.log(st0, st2);
+
+        /* 函数参数的解构 */
+        let arr2 = ['lisi', 23];
+        function fun1([name, age]) {
+            console.log(name, age);
+        }
+        fun1(arr2);
+
+        // 给参数设置默认值
+        function fun2([name,age=23]){
+            console.log(name,age);
+
+        }
+        fun2(['lisi']);
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

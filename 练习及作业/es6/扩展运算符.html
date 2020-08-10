@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul1">
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+    <script>
+        /* 数组的扩展运算符 */
+
+        // 拷贝数组（浅拷贝）
+        let arr1 = [1,2,[3,4]];
+        let arr2 = [...arr1];
+        arr2[2][0] = 666;
+        console.log(arr2);
+        console.log(arr1);
+
+        let arr3 = [0,...arr1];
+        console.log(arr3);
+
+        let arr4 = [...arr1,...arr3];
+        console.log(arr4);
+
+        // 把类数组转化为数组
+        // 类数组 （没有数组的方法）
+        let oLi = document.getElementsByTagName('li');
+
+        let arroLi = [...oLi];
+        console.log(arroLi);
+
+        /* 对象的扩展运算符 */
+        let obj1 = {
+            name: 'lisi',
+            age: 23
+        }
+
+        let obj2 = {
+            ...obj1
+        }
+        console.log(obj2);
+
+        let obj3 = {
+            ...obj1,
+            height: '186cm'
+        }
+        console.log(obj3);
+
+        let obj4 = {
+            sex: 'female'
+        }
+
+        let obj5 = {
+            ...obj1,
+            ...obj4
+        }
+        console.log(obj5);
+
+
+
+    </script>
+</body>
+</html>

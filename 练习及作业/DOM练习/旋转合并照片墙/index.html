@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        #container {
+            height: 100%;
+            background: url(./img/bg.jpg);
+            position: relative;
+        }
+
+        .thumbs {
+            width: 125px;
+            height: 125px;
+            border: 5px solid #ffffff;
+            position: absolute;
+            top: -135px;
+            left: -135px;
+            transition: all ease 2s;
+        }
+
+        .thumbs span {
+            /* position: absolute; */
+            /* top: 0; */
+            /* left: 0; */
+            /* bottom: 0; */
+            /* right: 0; */
+            width: 125px;
+            height: 125px;
+            display: none;
+            border: 1px solid #ffffff;
+        }
+
+        #prev {
+            width: 50px;
+            height: 100px;
+            background: url(./img/prev.png) #ffffff no-repeat center;
+            border-radius: 0 15px 15px 0;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            transition: ease 1s all;
+            opacity: 0;
+
+        }
+
+        #next {
+            width: 50px;
+            height: 100px;
+            background: url(./img/next.png) #ffffff no-repeat center;
+            border-radius: 15px 0 0 15px;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            transition: ease 1s all;
+            opacity: 0;
+
+        }
+
+        #prev:hover,
+        #next:hover {
+            background-color: #cccccc;
+            transition: ease 0.5s all;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <!-- img动态创建 -->
+        <div id="prev"></div>
+        <div id="next"></div>
+    </div>
+
+    <script>
+        (function () {
+            var oContainer = document.getElementById('container');
+            // 加载所有图片
+            var count = 0;
+            for (var i = 0; i < 24; i++) {
+
+                // 加载所有小图
+                var oSmallImg = new Image();
+                oSmallImg.src = './img/thumbs/' + (i + 1) + '.jpg';
+                oSmallImg.onload = function () {
+                    count++;
+                    if (count == 48) {
+                        // 图片加载完成，可以写逻辑了
+                        loadSuccess();
+                    }
+                }
+
+                // 加载所有大图
+                var oBigImg = new Image();
+                oBigImg.src = './img/' + (i + 1) + '.jpg';
+                oBigImg.onload = function () {
+                    count++;
+                    if (count == 48) {
+                        // 图片加载完成，可以写逻辑了
+                        loadSuccess();
+                    }
+                }
+            }
+
+            function loadSuccess() {
+                var imgName = 0; //为了方便计算图片的名字序号
+                var isBig = false; //点击大小图的标识位
+                var index;
+
+                // 小图片空隙
+                var smallImgWidth = smallImgHeight = 125;
+                var smallDisX = (oContainer.offsetWidth - 6 * (smallImgWidth + 10)) / 7;
+                var smallDisY = (oContainer.offsetHeight - 4 * (smallImgHeight + 10)) / 5;
+
+                // 大图片空隙
+                var bigDisX = (oContainer.offsetWidth - 6 * (smallImgWidth + 2)) / 2;
+                var bigDisY = (oContainer.offsetHeight - 4 * (smallImgHeight + 2)) / 2;
+
+                var oPrev = document.getElementById('prev');
+                var oNext = document.getElementById('next');
+
+                // 给24个小div添加背景图片
+                for (var i = 0; i < 4; i++) {
+                    for (var j = 0; j < 6; j++) {
+                        imgName++;
+
+                        var oDiv = document.createElement('div');
+                        oDiv.style.background = 'url(./img/thumbs/' + imgName + '.jpg)';
+                        oDiv.className = 'thumbs';
+                        oDiv.row = i;
+                        oDiv.col = j;
+                        oDiv.index = imgName;//方便之后获取元素的索引
+                        // 用span装大图
+                        oDiv.innerHTML = '<span></span>';
+                        oDiv.onclick = toggle;
+                        oContainer.appendChild(oDiv);
+                    }
+                }
+                // 定位小div位置（入场动画）
+                var aThumbs = oContainer.getElementsByClassName('thumbs');
+                var aSpan = oContainer.getElementsByTagName('span');
+
+                // 设置延时 （dom操作异步 等待上面dom操作完成后再执行）
+                setTimeout(function () {
+                    for (var i = 0; i < aThumbs.length; i++) {
+                        aThumbs[i].style.left = smallDisX * (aThumbs[i].col + 1) + (smallImgWidth + 10) * (aThumbs[i].col) + 'px';
+                        aThumbs[i].style.top = smallDisY * (aThumbs[i].row + 1) + (smallImgHeight + 10) * (aThumbs[i].row) + 'px';
+                        aThumbs[i].style.transform = 'rotate(' + (Math.random() * 40 - 20) + 'deg)';
+                        aThumbs[i].style.transitionDelay = (aThumbs.length - i) * 100 + 'ms';
+                    }
+                }, 100);
+
+                // 点击事件
+                function toggle(e) {
+                    index = this.index;//方便之后获取
+                    if (isBig) {
+                        // 分散
+                        for (var i = 0; i < aThumbs.length; i++) {
+                            aSpan[i].style.display = 'none';
+                            aThumbs[i].style.left = smallDisX * (aThumbs[i].col + 1) + (smallImgWidth + 10) * (aThumbs[i].col) + 'px';
+                            aThumbs[i].style.top = smallDisY * (aThumbs[i].row + 1) + (smallImgHeight + 10) * (aThumbs[i].row) + 'px';
+                            aThumbs[i].style.transform = 'rotate(' + (Math.random() * 40 - 20) + 'deg)';
+                            
+                            
+                            aThumbs[i].style.borderWidth = '5px';
+                        }
+                        isBig = !isBig;
+                        oPrev.style.opacity = oNext.style.opacity = 0;
+
+                    } else {
+                        // 合并
+                        for (var i = 0; i < aThumbs.length; i++) {
+                            aThumbs[i].style.left = bigDisX + aThumbs[i].col * (smallImgWidth + 2) + 'px';
+                            aThumbs[i].style.top = bigDisY + aThumbs[i].row * (smallImgHeight + 2) + 'px';
+                            aThumbs[i].style.transitionDelay = '0ms';
+                            aThumbs[i].style.borderWidth = '0px';
+                            aSpan[i].style.border = '1px solid #ffffff';
+                            aThumbs[i].style.transform = 'rotate(0deg)';
+                            aSpan[i].style.display = 'block';
+
+                            aSpan[i].style.background = 'url(./img/' + (index) + '.jpg) ' + -aThumbs[i].col * smallImgWidth + 'px ' + -aThumbs[i].row * smallImgHeight + 'px';
+                        }
+                        isBig = !isBig;
+                        oPrev.style.opacity = oNext.style.opacity = 1;
+
+                    }
+                }
+
+                oPrev.onclick = function (e) {
+                    // 获取不到小div 所以需要全局变量index记住当前点击的div
+                    index = (index <= 1) ? 24 : --index;
+                    for (var i = 0; i < aThumbs.length; i++) {
+                        aSpan[i].style.background = 'url(./img/' + index + '.jpg) ' + -aThumbs[i].col * smallImgWidth + 'px ' + -aThumbs[i].row * smallImgHeight + 'px';
+                        aSpan[i].style.transitionDelay = Math.random() * 300 + 'ms';
+                    }
+
+                }
+
+                oNext.onclick = function (e) {
+                    index = (index >= 24) ? 1 : ++index;
+                    for (var i = 0; i < aThumbs.length; i++) {
+                        aSpan[i].style.background = 'url(./img/' + index + '.jpg) ' + -aThumbs[i].col * smallImgWidth + 'px ' + -aThumbs[i].row * smallImgHeight + 'px';
+                        aSpan[i].style.transitionDelay = Math.random() * 300 + 'ms';
+                    }
+                }
+
+            }
+        })();
+    </script>
+</body>
+
+</html>

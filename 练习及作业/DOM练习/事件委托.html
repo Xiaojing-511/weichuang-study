@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <ul id="list">
         <li>start</li>
@@ -12,18 +14,25 @@
     <button id="btn">添加</button>
     <script>
         // 点击li log出它的innerHTML
-        var oUl=document.getElementById('list');
-        var oBtn=document.getElementById('btn');
-        oBtn.onclick=function(e){
-            var newLi=document.createElement('li');
-            newLi.innerHTML=Math.random()*9;
+        var oUl = document.getElementById('list');
+        var oBtn = document.getElementById('btn');
+        oBtn.onclick = function (e) {
+            var newLi = document.createElement('li');
+            newLi.innerHTML = Math.random() * 9;
             oUl.appendChild(newLi);
         }
 
         // 事件委托
-        oUl.addEventListener('click',function(e){
-            console.log(e.target.innerHTML);
-        },true)
+        // 1. 子元素过多的事件绑定问题
+        // 2. 后生成元素的事件绑定问题
+        oUl.addEventListener('click', function (e) {
+            e = e ||window.event;
+            var target = e.target || e.srcElement;
+            if(target.tagName == 'LI'){
+                console.log(target.innerHTML);
+            }
+        }, true)
     </script>
 </body>
+
 </html>

@@ -80,13 +80,14 @@
         console.log(oUl.id);
         oUl.id = 'listTemp';
         oUl.className = 'ul1';
-        // 添加的是对象属性 而不是内联的属性
-        // oUl.cc='aa';
-        // console.log(oUl);
-        // console.log(oUl.cc);
+        
+        // 自定义对象属性 
+        oUl.cc='aa';
+        console.log(oUl);
+        console.log(oUl.cc);
 
-        // 自定义属性
-        // 只能通过这种方式来创建和获取
+        // 自定义DOM属性（在标签里）
+        // 只能通过这种方式来创建和获取(或直接在标签中写)
         oUl.setAttribute('cc', 'aa');
         // console.log(oUl.cc);  undefined
         console.log(oUl.getAttribute('cc'));

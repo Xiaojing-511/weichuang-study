@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 【函数提前】：加载时会先加载函数声明形式的函数
+
+        fun();
+        // 函数声明【函数提前】
+        function() {
+
+        }
+
+        // 函数表达式
+        var fun2 = function () {
+
+        }
+        fun2();
+
+        // 【变量提升】
+        function test() {
+            // 会在加载时先var a;
+            console.log(a);
+            var a = 5;
+        }
+    </script>
+</body>
+
+</html>

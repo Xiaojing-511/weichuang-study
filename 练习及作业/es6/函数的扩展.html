@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="ul1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        // 箭头函数
+        /*
+        （1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+
+       （2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+
+        （3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+        */
+        let fn1 = () => { }  //与let fn1 = function(){}同
+
+        // 新增属性 length name
+        let fn2 = (x, y, z = 999, ...rest) => { }
+        // 声明并没有默认值的形参个数
+        console.log(fn2.length);  //2
+        // 函数名 name
+        console.log(fn2.name);  //fn2
+
+        /*
+        箭头函数的this问题 ：
+        函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+            (箭头函数内部的this指向的是父作用域中的this)
+            (如果箭头函数被非箭头函数包含，则this指向的就是最近一层非箭头函数中的this，否则就是this指向全局对象【window】)
+        */
+
+        // let obj1 = {
+        //     name: 'lisi',
+        //     hobby: function () {
+        //         // console.log(this);
+        //         let obj2 = {
+        //             age: 19,
+        //             study: () => {
+        //                 console.log(this);
+        //             }
+        //         }
+        //         obj2.study();
+        //     }
+        // }
+        // obj1.hobby();
+        
+        let obj1 = {
+            name: 'lisi',
+            hobby: () => {
+                // console.log(this);
+                let obj2 = {
+                    age: 19,
+                    study: () => {
+                        console.log(this);
+                    }
+                }
+                obj2.study();
+            }
+        }
+        obj1.hobby();
+
+
+        /*
+       改变this指向的方式：
+       call: 参数是多个 （要将this改变为的指针，后面所有的参数都是这个方法的实参）
+       apply: 参数是两个 （要将this改变为的指针，[parm1,parm2,....]）
+       bind: 参数是多个 （要将this改变为的指针，后面所有的参数都是这个方法的实参） 手动调用
+             不会立即调用函数，常用于改变回调函数的参数
+       */
+        let oUl = document.getElementById('ul1');
+        let aLi = document.getElementsByTagName('li');
+        
+        function fn3(a,b){
+            console.log(a,this);
+        }
+
+        fn3.call(oUl,'call')
+        // fn3.apply(oUl,['apply']);
+        // fn3.blid(oUl,'apply')();
+
+        for(var i = 0;i<aLi.length;i++){
+            aLi[i].onclick = function(){
+            console.log(this);
+            setTimeout(function(){
+                console.log(this);
+            }.bind(this),1000)
+        };
+        }
+        
+
+    </script>
+</body>
+
+</html>

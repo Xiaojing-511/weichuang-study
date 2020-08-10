@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1 {
+            width: 600px;
+            text-align: center;
+        }
+
+        #ul1 {
+            background: pink;
+        }
+
+        #ul1 li {
+            background: powderblue;
+        }
+
+        .btn {
+            width: 100px;
+            height: 30px;
+            background: palevioletred;
+        }
+
+        p {
+            background: rebeccapurple;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn1" class="btn">在后面添加</button>
+    <button id="btn2" class="btn">在前面添加</button>
+    <button id="btn3" class="btn">添加后面兄弟元素</button>
+    <button id="btn4" class="btn">添加前面兄弟元素</button>
+    <button id="btn5" class="btn">用元素包裹</button>
+    <button id="btn6" class="btn">移除最后面li</button>
+    <button id="btn7" class="btn">更换first li的html</button>
+    <ul id="ul1">
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+
+</body>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    var $ul1 = $('#ul1');
+    $('#btn1').on('click', function () {
+        // append()
+        $ul1.append('<li>item append</li>');
+        // appendTo()
+        // $('<li>item add</li>').appendTo($ul1);
+    });
+
+    $('#btn2').on('click', function () {
+        // prepend()
+        $ul1.prepend('<li>item add</li>');
+        // prependTo()
+        // $('<li>item prepend</li>').prependTo($ul1);
+    });
+
+    $('#btn3').on('click', function () {
+        // after()
+        $ul1.after('<p>ul after p</p>');
+    });
+
+    $('#btn4').on('click', function () {
+        // before()
+        $ul1.before('<p>ul before p</p>');
+    });
+
+    $('#btn5').on('click', function () {
+        // wrap()
+        $ul1.wrap('<div class="div1" >');
+        // $('p').wrap('<div class="div1">');
+    });
+    
+    $('#btn6').on('click', function () {
+        // remove()
+        $('#ul1 li:last-child').remove();
+        // 通过寻找父元素下的子元素删除
+        /* function remove(elem){
+                elem.parentNode.removeChild(elem);
+        }*/
+    });
+
+    $('#btn7').on('click', function () {
+        // html()
+        $('#ul1 li:first-child').html('new html');
+    });
+
+
+</script>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p class="p1">i am a p </p>
+
+    <ul id="ul1">
+        <li id="li1">item 1<span>span</span></li>
+        <li id="li2">item 2</li>
+        <li id="li3">item 3</li>
+        <li id="li4">item 4</li>
+        <li id="li5">item 5</li>
+    </ul>
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+        var $li = $('#ul1>li');
+        // .first()  .last() 
+
+        // $('#ul1 li:first').css('background','pink');   （直接筛选出第一个）
+        // $li.first().css('background','pink');  //性能差于上面  （选中所有的li后筛选）
+
+        // .eq(index)
+
+        // $li.eq(1).css('background','pink');
+        // $li.eq(-1).css('background','#cccccc');
+
+        // .filter()  筛选
+
+        // 选择器
+        // $li.filter(':even').css('background','pink');
+
+        // 函数
+        $li.filter(function (index) {
+            return index % 2 == 0;
+        }).css('background', 'pink');
+
+        // map()  特别适用于获取或设置元素集合中的值  返回的是jq的数组 常用.get()方法来转换成普通的数组
+        console.log($li.map(function () {
+            return this.id;
+        }).get().join(',')  //join()为数组的方法（分隔）
+        );
+
+        // each([index],[elem])  遍历每个元素
+
+        $li.each(function (index, elem) {
+            // console.log(index + ': ' + $(this).html());
+            // console.log(index + ': ' + this.innerHTML);
+            console.log(index + ': ' + elem.innerHTML);
+        });
+
+        // end()  结束选择的子元素 重新选中$('#ul1')
+        // 不建议 建议重选元素
+
+        $('#ul1')
+            .children()
+            .css({
+                border: '1px solid black'
+            })
+            .end()
+            .css({
+                border: '2px solid pink'
+            });
+
+        var $ul1 = $('#ul1');
+        // $ul1.css({
+        //     border: '2px solid pink'
+        // });
+
+        // $ul1.children()
+        // .css({
+        //     border: '1px solid black'
+        // });
+
+        // add()  将元素添加到匹配元素的集合中
+
+        console.log($li.add('<p>pppppppppp</p>').eq(-1).html());
+
+        // 树遍历
+        // children()  next() nextAll() nextUntil() prev() prevAll()  prevUntil()
+
+        // $ul1.children().css("color",'#ccc');
+        // $li.eq(0).next().css('color','#ccc');
+        // $li.eq(0).nextAll().css('color','#ccc');
+        // $li.eq(0).nextUntil($li.eq(-1)).css('color','#ccc');
+
+        // find() [后代都可以查询到] 
+        // parent() parents()[祖先都可以查询到] siblings()  [上下所有的兄弟] 
+        
+        // $ul1.find('span').css('color','red');
+        // $('#ul1>li>span').parent().css('background','green');
+        // $('#ul1>li>span').parents('#ul1').css('background','green');
+        // $li.eq(2).siblings().css('color','blue');
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

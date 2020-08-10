@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Map() 类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键
+
+        let m1 = new Map();
+        //添加成员 set()
+        m1.set('name', 'lisi');
+
+        // 不允许有重复的key 否则会覆盖
+
+        // 获取长度 size
+        console.log(m1.size);
+
+        // 获取数据 get()
+        console.log(m1.get('name'));
+
+        // 判断是否有该key => boolean
+        console.log(m1.has('name'));
+
+        // 删除数据 delete()
+        console.log(m1.delete('name'));
+
+        // 清空 clear()
+
+        // 循环
+        for (let [index, value] of m1.entries()) {
+            console.log(index, value);
+        }
+        console.log(m1);
+
+        // WeakMap  类似于Map  只能添加对象
+    </script>
+</body>
+
+</html>

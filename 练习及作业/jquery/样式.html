@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 200px;
+            height: 200px;
+            background: cadetblue;
+            position: relative;
+            color: black;
+        }
+
+        .inner {
+            width: 100px;
+            height: 50px;
+            background: coral;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background: #cccccc;
+            border: 5px solid black;
+            padding: 10px;
+            margin: 10px;
+        } 
+
+        .div1 {
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+
+        .div2 {
+            width: 200px;
+            height: 200px;
+            background: purple;
+        }
+
+        #myForm{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ccc;
+            margin: 20px auto;
+        }
+
+        #myButton{
+            width: 50px;
+            height: 20px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        123456789
+        <div class="inner"></div>
+    </div>
+
+   
+
+    <div id="box1"></div>
+
+    <div id="myDiv" class="div1"></div>
+
+    <form action="http://www.baidu.com" id="myForm">
+        <input id="myText" type="text">
+        <input id="myButton" type="button">
+    </form>
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+        var $container = $('#container');
+       
+        /* 位置 */
+
+        // offset 可获取可设置 （相对于文档的距离）
+        $container.offset({
+            left: 100,
+            top: 100
+        });
+
+        var $inner = $('#container .inner'); //将选中的元素进行缓存！
+        $inner
+            .css('background', 'red')
+            ;
+
+        // position只能获取 不能设置（相对于父元素定位）
+        // console.log($inner.position());
+        // console.log($inner.offset());
+
+        /* 属性 */
+        // 原生dom对象的attribute和property的区别
+        // attribute：dom属性，放在dom结构中
+        // property：对象属性，放在内存中的
+        
+        // .attr() .prop()  .removeAttr() .removeProp() .val()
+        var $myButton = $('#myButton');
+        console.log($myButton.attr('type'));
+        // 自定义和dom属性均可以这样设置
+        $myButton.attr('value','submit').attr('aa','cc');
+
+        // 对象属性
+        // $myButton.prop('name','lisi');
+        $container.prop('name','lisi');
+        // console.log($myButton.prop('name'));
+        console.log($container.prop('name'));
+
+        $container.removeProp('name');
+        console.log($container.prop('name'));
+
+        // .val()  主要用于表单
+        console.log($myButton.val());
+
+
+
+
+
+        /*.css */
+
+        var oDiv = document.getElementById('container');
+        
+        // dom获取可计算的style(css中设置的)
+        console.log(window.getComputedStyle(oDiv).color);
+        
+
+        // 获取css(一个参数)
+        // console.log($container.css('width'));
+
+        // 设置css(两个参数)
+        // 一两条 直接写
+        //  $container.on('click',function(){
+        //     $(this).css('background','#ccc');
+        //  });
+
+        //  写多条 封装为对象
+        $container.on('click', function () {
+            $(this).css({
+                background: '#ccc',
+                color: 'white',
+                // 带-的样式要加引号
+                'font-size': '25px'
+            });
+        });
+
+        //.addClass()  .hasClass()  .removeClass()  .toggleClass()
+        var $myDiv = $('#myDiv');
+        console.log($myDiv.hasClass('div1'));
+        $myDiv.addClass('div2').on('click',function(){
+            $(this).toggleClass('div2');
+        });
+
+        console.log($myDiv.hasClass('div1'));
+
+
+
+
+
+        /* 尺寸 */
+        // .width() 与.css('width')
+        console.log($('#box1').width());      //不带单位（方便计算）当一个元素的宽度需要数学计算的时候推荐使用.width() 方法 
+        console.log($('#box1').css('width')); //带单位
+
+        // .innerWidth()  包含padding 不包含border
+        console.log($('#box1').innerWidth());
+        // .outerWidth()  包含padding、border  不包含margin
+        console.log($('#box1').outerWidth());
+
+
+    </script>
+</body>
+
+</html>

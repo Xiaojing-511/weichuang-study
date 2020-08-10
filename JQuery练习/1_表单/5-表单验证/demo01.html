@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉框左右选择</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="../jquery.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        form div{
+            margin: 5px 0;
+        }
+        .int label{
+            float: left;
+            width: 100px;
+            text-align: right;
+        }
+        .high{
+            color: red;
+        }
+        .onSuccess{
+            background: url(img/reg4.gif) no-repeat 0 center;
+        }
+        .onError{
+            background: url(img/reg3.gif) no-repeat 0 center;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+        <div class="int">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" class="required"/>
+        </div>
+        <div class="int">
+            <label for="mail">邮箱:</label>
+            <input id="mail" type="text" class="required"/>
+        </div>
+        <div class="int">
+            <label for="personinfo">个人信息:</label>
+            <input id="personinfo" type="text"/>
+        </div>
+        <div class="sub">
+            <input type="submit" value="提交" id="send"/>
+            <input type="reset" id="res"/>
+        </div>
+
+    </form>
+    <script>
+        $(function(){
+            var $parent = $(".required").parent();
+            $parent.append("<span class=high>*</span>");
+            $(".required").blur(function(){
+                $(this).parent().find(".formtips").remove();
+                if($(this).is("#username")){
+                    if(this.value == "" ||this.value.length < 6){
+                        var errorMsg = "请输入至少6位用户名.";
+                        $(this).parent().append("<span class = 'formtips onError'>"+errorMsg+"</span>");
+                    }else{
+                        var okMsg = "输入正确.";
+                        $(this).parent().append("<span class='formtips onSuccess'>"+okMsg+"</span>");
+                    }
+                }
+                if($(this).is("#mail")){
+                    if(this.value =="" ||(this.value!="" && !/.+@.+\.[a-zA-Z]{2,4}$/.test(this.value))){
+                        var errorMsg = "请输入正确的mail地址.";
+                        $(this).parent().append("<span class = 'formtips onError'>"+errorMsg+"</span>");
+                    }else{
+                        var okMsg = "输入正确.";
+                        $(this).parent().append("<span class='formtips onSuccess'>"+okMsg+"</span>");
+                    }
+                }
+            }).keyup(function(){
+                $(this).triggerHandler('blur');
+            }).focus(function(){
+                $(this).triggerHandler('blur');
+            });
+            $("send").click(function(){
+                $(".required").trigger('blur');
+                var numError = $(".onError").length;
+                if(numError){
+                    return false;//组织trigger()的默认行为。
+                }
+                alert("注册成功,密码已发到你的邮箱,请查收.");
+            })
+        })
+    </script>
+</body>
+</html>

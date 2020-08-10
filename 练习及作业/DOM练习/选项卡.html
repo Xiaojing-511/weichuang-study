@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 300px;
+            margin: 50px auto 0;
+        }
+
+        #menu {
+            height: 40px;
+        }
+
+        #menu>li {
+            width: 100px;
+            height: 100%;
+            line-height: 40px;
+            float: left;
+            background: #cccccc;
+            list-style-type: none;
+            text-align: center;
+            border-bottom: 1px solid #000;
+        }
+
+        #menu>.active {
+            color: white;
+        }
+
+        #content {
+            width: 100%;
+        }
+
+        #content>div {
+            height: 300px;
+            background: #ccc;
+            display: none;
+        }
+
+        #content>div:first-child {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul id="menu">
+            <li class="active">菜单一</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+        </ul>
+        <div id="content">
+            <div>内容一。。。1111111111111</div>
+            <div>内容二。。。2222222222222</div>
+            <div>内容三。。。3333333333333</div>
+        </div>
+    </div>
+
+    <script>
+        var oContainer = document.getElementById('container');
+        var oMenu = document.getElementById('menu');
+        var aLi = oMenu.getElementsByTagName('li');
+
+        var oContent = document.getElementById('content');
+        var aDiv = oContent.getElementsByTagName('div');
+
+        // 普通写法
+        // for (var i = 0; i < aLi.length; i++) {
+        // 增加自定义对象属性来记录index
+        //     aLi[i].index = i;
+
+        //     aLi[i].onclick = function () {
+        //         for (var j = 0; j < aLi.length; j++) {
+        //             aLi[j].className = '';
+        //             aDiv[j].style.display = 'none';
+        //         }
+        //         aLi[this.index].className = 'active';
+        //         aDiv[this.index].style.display = 'block';
+        //     }
+        // }
+
+
+        // 事件委托
+        // 监听函数里的内容在被触发时才执行
+        oMenu.addEventListener('click', function (e) {
+
+            // 解决兼容性
+            e = e || window.event;
+            var target = target || e.srcElement;
+
+            // 防止点击ul下的其他元素也触发事件
+            if (target.tagName == 'LI') {
+
+                for (var j = 0; j < aLi.length; j++) {
+                    aLi[j].className = '';
+                    aDiv[j].style.display = 'none';
+                }
+                e.target.className = 'active';
+                aDiv[e.target.index].style.display = 'block';
+            }
+
+        })
+
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].index = i;
+        }
+
+
+    </script>
+
+</body>
+
+</html>

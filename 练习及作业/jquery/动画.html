@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 300px;
+            height: 300px;
+            background: #cccccc;
+        }
+
+        #box1,
+        #box2 {
+            width: 200px;
+            height: 200px;
+            background: pink;
+            /* margin: 50px; */
+        }
+
+        #box2 {
+            /* visibility: hidden; */
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="box1"></div>
+    </div>
+    <div id="box2"></div>
+    <button id="btn1">淡入</button>
+    <button id="btn2">淡出</button>
+    <button id="btn3">淡入到透明度</button>
+    <button id="btn4">淡入淡出</button>
+    <button id="btn5">向上滑动</button>
+    <button id="btn6">向下滑动</button>
+    <button id="btn7">上下交替滑动</button>
+    <button id="btn8">隐藏</button>
+    <button id="btn9">显示</button>
+    <button id="btn10">显示隐藏交替</button>
+    <button id="btn11">动画效果</button>
+
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+        var $box1 = $('#box1');
+        // hide()  show()  toggle()  
+        // 该效果适用于通过 jQuery 隐藏的元素，或在 CSS 中声明 display:none 的元素
+        // （但不适用于 visibility:hidden 的元素）
+        $('#btn8').on('click', function () {
+            $box1.hide();
+        });
+        $('#btn9').on('click', function () {
+            $box1.show();
+            // $('#box2').show(); 
+        });
+        $('#btn10').on('click', function () {
+            $box1.toggle();
+        });
+
+        // fadeIn() fadeOut()  fadeTo(duration, opacity)  fadeToggle()
+        // 可加动画时间
+        $('#btn1').on('click', function () {
+            $box1.fadeIn(1000);
+        });
+
+        $('#btn2').on('click', function () {
+            $box1.fadeOut(1000);
+        });
+
+        $('#btn3').on('click', function () {
+            $box1.fadeTo(1, 0.5);
+        });
+
+        $('#btn4').on('click', function () {
+            $box1.fadeToggle();
+        });
+
+        // slideDown()  slideUp()  slideToggle()
+        // 可加动画时间
+        $('#btn5').on('click', function () {
+            $box1.slideUp();
+        });
+        $('#btn6').on('click', function () {
+            $box1.slideDown();
+        });
+        $('#btn7').on('click', function () {
+            $box1.slideToggle();
+        });
+
+        // animate()
+        $('#btn11').on('click', function () {
+            $box1.animate({
+                opacity: 0.25,
+                width: 0,
+                height: 0
+            }, 2000, function () {  //回调函数 （在动画完成后执行）
+                $box1.animate({
+                    opacity: 1,
+                    width: 200,
+                    height: 200
+                },2000);
+            });
+        });
+
+    </script>
+</body>
+
+</html>

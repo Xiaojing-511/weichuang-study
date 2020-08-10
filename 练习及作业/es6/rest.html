@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fun1([a0,a1,...rest]){
+            console.log(a0,a1);
+            // 获取没接到的参数
+            console.log(rest);
+        }
+
+        function fun2([...rest]){
+            console.log(rest);
+        }
+
+        fun1([0,1,2,3,4]);
+        fun2([0,1,2,3,4]);
+    </script>
+</body>
+</html>

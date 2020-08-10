@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            position: relative;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: cornflowerblue;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        var oBox = document.getElementById('box');
+
+        oBox.onmousedown = function (e) {
+            // 光标距离左侧距离
+            var x = e.clientX;
+            // 光标距离上边距离
+            var y = e.clientY;
+            // 元素的左侧距离页面左侧距离
+            var lx = oBox.offsetLeft;
+            // 元素的上侧距离页面上侧距离
+            var ly = oBox.offsetTop;
+            document.onmousemove = function (e) {
+                oBox.style.left = e.clientX - x + lx + 'px';
+                oBox.style.top = e.clientY - y + ly + 'px';
+            }
+        }
+
+        oBox.onmouseup = function (e) {
+            document.onmousemove = null;
+        }
+    </script>
+</body>
+
+</html>
