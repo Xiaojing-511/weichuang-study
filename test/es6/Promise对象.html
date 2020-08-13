@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大
+        // Promise对象是一个构造函数，用来生成Promise实例
+        // Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由 JavaScript 引擎提供，不用自己部署
+        // resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；reject函数的作用是，将Promise对象的状态从“未完成”变为“失败”（即从 pending 变为 rejected），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去
+
+
+        // 可以用then方法分别指定resolved状态和rejected状态的回调函数
+        // then方法接受两个回调函数作为参数。第一个是Promise对象的状态变为resolved时调用，第二个回调函数是Promise对象的状态变为rejected时调用。其中，第二个函数是可选的，不一定要提供
+        // 也可以用then指定resolved状态 catch指定rejected状态
+        // let p1 = new Promise(function (resolve, reject) {
+        //     let flag1 = true;
+        //     setTimeout(() => {
+        //         console.log('请求一请求中...');
+        //         if (flag1) {
+        //             resolve();
+        //         } else {
+        //             reject();
+        //         }
+        //     }, 2000)
+        // }).then(() => {
+        //     console.log('请求一请求成功...');
+        //     return new Promise((resolve, reject) => {
+        //         let flag2 = false;
+        //         setTimeout(() => {
+        //             console.log('请求二请求中...');
+        //             if (flag2) {
+        //                 resolve(flag2);
+        //             } else {
+        //                 reject(flag2);
+        //             }
+        //         }, 2000)
+        //     })
+        // }, () => {
+        //     console.log('file was rejected...');
+        // })
+            // .then((flag2) => {
+            //     console.log('请求二请求成功...');
+            //     console.log('flag2' + ': ' + flag2);
+            // }, (flag2) => {
+            //     console.log('请求二请求失败...');
+            //     console.log('flag2' + ': ' + flag2);
+            //     // return new Promise();
+
+            // })
+
+            // .then((flag2) => {
+            //     console.log('请求二请求成功...');
+            //     console.log('flag2' + ': ' + flag2);
+            // }).catch((flag2) => {
+            //     console.log('请求二请求失败...');
+            //     console.log('flag2' + ': ' + flag2);
+            // })
+
+        let pr1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('p1ok...');
+                resolve();
+            }, 2000)
+        })
+        let pr2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('p2ok...');
+                resolve();
+            }, 1000)
+        })
+        let pr3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('p3ok...');
+                resolve();
+            }, 500)
+        })
+
+        // .all()  待所有的promise结束后执行
+        // Promise.all([pr1, pr2, pr3]).then(() => {
+        //     console.log('all is ok!!!');
+        // })
+
+        // .race() 有一个执行完了 就执行
+        Promise.race([pr1,pr2,pr3]).then(()=>{
+            console.log('is ok');
+        })
+    </script>
+</body>
+
+</html>

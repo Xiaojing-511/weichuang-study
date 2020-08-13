@@ -1,0 +1,90 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0; }
+
+#container {
+  width: 100px;
+  height: 100px;
+  color: #1875e7;
+  margin-left: 10px; }
+
+#container ul li {
+  color: pink; }
+
+.box1, .box2 {
+  width: 50px; }
+
+#div .box {
+  width: 200px;
+  border-radius: 50%; }
+#div a {
+  background: pink; }
+  #div a:hover {
+    color: plum; }
+
+/* 此为标准的CSS注释，会保留到编译后的文件（css文件） */
+/*！ 重要注释 ，即使是压缩模式编译，也会在css文件中保留  通常可以用于声明版权信息*/
+.box2 {
+  height: 100px; }
+
+.box3 {
+  margin-left: 10px;
+  float: left; }
+
+.box4 {
+  margin-right: 10px;
+  float: right; }
+
+.box5 {
+  color: #1875e7;
+  color: #74acf1;
+  color: #0e468b;
+  color: #1875e7;
+  color: rgba(24, 117, 231, 0.8); }
+
+.box6 {
+  color: pink; }
+
+.box1, .box2 {
+  background: #000; }
+
+.box2 {
+  background: #000; }
+
+.box3 {
+  background: #000; }
+
+.box4 {
+  background: #000; }
+
+.box5 {
+  background: #000; }
+
+.box5 {
+  border-radius: 20%; }
+
+.box3 {
+  border-radius: 20%; }
+
+.box1, .box2 {
+  border-radius: 20%; }
+
+.a {
+  box-shadow: 1px; }
+
+.b {
+  box-shadow: 1px; }
+
+.box7 {
+  width: 100px; }
+
+.box8 {
+  color: color1, color2, color3;
+  color: red, green, blue;
+  color: true; }
+
+.box9 {
+  color: blue; }
+
+/*# sourceMappingURL=index.css.map */

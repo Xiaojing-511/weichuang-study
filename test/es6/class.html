@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            sleep() {
+                console.log(this.name + ' is sleeping...');
+            }
+            // 静态方法:不能通过对象.方法()的方式调用,只能通过 类名.方法()的方式调用   案例： Array.of()  Object.is()
+            static speak() {
+                console.log(this.name + ' is speaking...');
+            }
+        }
+
+        let p1 = new Person('lisi',23);
+        p1.sleep();
+        Person.speak();
+
+        /* 子类 */
+        class Student extends Person{
+            constructor(name,age,grade){
+                super(name,age);  //继承父类的属性
+                this.grade = grade;
+            }
+            code(){
+                console.log(this.grade + '的'+ this.name + ' is coding...');
+            }
+        }
+
+        let s1 = new Student('zhangsan',26,'19级');
+        s1.code();
+    </script>
+</body>
+
+</html>

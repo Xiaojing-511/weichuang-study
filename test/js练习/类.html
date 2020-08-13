@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        类：是具有相同属性和方法的对象的集合
+          1、构造函数的名字要大写(为了和普通函数区分开)
+          2、属性写在构造函数里
+          3、方法要写到原型里
+        */
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.sleep = function () {
+            console.log(this.name + ' is sleeping');
+        }
+
+        let p1 = new Person('lisi', 23);
+        console.log(p1.name + p1.age);
+        p1.sleep();
+
+        p1.gender = 'female';
+        console.log(p1.gender);
+        // 构造函数也在原型中
+        // 类才有原型  
+        console.log(Person.prototype.constructor);
+        // console.log(p1.prototype.constructor); //错
+
+        /* 子类 */
+        function Student(name, age, grade) {
+            Person.call(this, name, age);
+            this.grade = grade;
+        }
+        Student.prototype = new Person();
+        Student.prototype.constructor = Student();
+
+        Student.prototype.code = function () {
+            console.log(this.grade + '的' + this.name + ' is coding');
+        }
+
+        let s1 = new Student('zhangsan', 18, '18级');
+        console.log(s1.name + s1.age + s1.grade);
+        s1.code();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+
+                    babel: ES6=>ES5
+要使用Babel， 我们需要nodeJS的环境和npm（下载nodejs就有npm了 但是下载cnpm更快）
+
+1. 安装nodejs http://nodejs.cn/download/  cmd下检查是否安装成功 cmd命令行：node –v 
+2. cnpm  淘宝镜 https://developer.aliyun.com/mirror/NPM?from=tnpm   
+    命令行：npm  install -g cnpm --registry=https://registry.npm.taobao.org
+3. 新创建个文件夹（如babel-demo）,并在该文件夹目录下右键在集成终端中打开 
+    命令行：npm init -y (不好使就nmp init 之后一直回车)，成功则生成 package.json 文件
+    继续命令行：npm install -g babel-cli 成功则会在package.json 文件中添加一些新内容
+    继续命令行：npm install --save-dev babel-preset-es2015 babel-cli  成功会生成一个文件夹（node_modules）
+4. 在babel-demo 下创建文件.babelrc(就叫这个名 没有后缀，成功是一个B的图标)，
+    在文件中写如下语法 
+    {
+        "presets": [
+            "es2015"
+        ],
+        "plugins": []
+    }
+5. 文件转化（es6 => es5）: 命令行: babel index.js –o index1.js  (index.js是存在es6语法的js文件 index1.js是转化成es5语法的自定义名字的js文件)
+    文件夹转化：babel src –d dist（src为存在es6语法的文件下的文件夹，dist是转化成es5语法的自定义名字的文件夹）
+    实时转化：babel src/index.js -w -o dist/index.js
+        babel src -w -d dist
+
+
+
+
+
+

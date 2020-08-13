@@ -1,0 +1,163 @@
+@charset "utf-8";
+@import "./main.scss";
+
+// 1.变量 以$开头
+
+$blue: #1875e7;
+$color: "color";
+$left: "left";
+$li: "#container ul li"; //特殊变量
+
+#container {
+    width: 100px;
+    height: 100px;
+    #{$color}: $blue;
+    margin-#{$left}: 10px;
+}
+
+#{$li} {
+    color: pink;
+}
+
+// 2.计算 （/比较特殊）除数不能有单位 表达式用括号包裹
+
+.box1 {
+    width: (100px/2);
+}
+
+// 3.选择器嵌套  /属性嵌套(要写: ) /&引用父元素
+#div {
+    .box {
+        width: 200px;
+        border: {
+            radius: 50%;
+        }
+    }
+
+    a {
+        background: pink;
+        &:hover {
+            color: plum;
+        }
+    }
+}
+
+// 4.注释
+/* 此为标准的CSS注释，会保留到编译后的文件（css文件） */
+// 单行注释 ,不会在css文件中保留
+/*！ 重要注释 ，即使是压缩模式编译，也会在css文件中保留  通常可以用于声明版权信息*/
+
+// 5.继承  允许选择器继承另一个选择器
+.box2 {
+    @extend .box1;
+    height: 100px;
+}
+
+// 6.Mixin  混合宏 可以重用的代码块
+
+//使用@mixin 定义一个代码块
+@mixin left {
+    margin-left: 10px;
+    float: left;
+}
+
+//使用@include 调用该mixin
+
+.box3 {
+    @include left;
+}
+
+// 可以传参 缺省
+@mixin right($mr: 10px, $f: left) {
+    margin-right: $mr;
+    float: $f;
+}
+
+.box4 {
+    // @include right(10px, right);
+    // 传给第一个参数
+    // @include right(10px);
+    // 所传参数不全 要指明参数含义(都要有缺省值)
+    @include right($f: right);
+}
+
+// 7.颜色函数
+.box5 {
+    color: $blue;
+    color: lighten($blue, 20%); //变浅
+    color: darken($blue, 20%); //变深
+    color: opacify($blue, 0.9); //变不透明
+    color: transparentize($blue, 0.2); //变透明
+    // color: grayscale( #000000);
+    // color: complement( #000000);
+}
+
+// 8. 插入文件 @import "path/filenamme.scss";
+
+// 9. 条件语句  @if    @else
+@mixin colorChange($i) {
+    @if $i == 1 {
+        color: pink;
+    } @else {
+        color: plum;
+    }
+}
+
+.box6 {
+    @include colorChange(1);
+}
+// 10.循环语句  @for   @while   @each
+@for $i from 1 to 6 {
+    .box#{$i} {
+        background: #000;
+    }
+}
+
+$j: 5;
+@while $j > 0 {
+    .box#{$j} {
+        border-radius: 20%;
+    }
+    $j: $j - 2;
+}
+
+@each $k in a,b {
+    .#{$k}{
+        box-shadow: 1px;
+    }
+}
+
+//11.自定义函数 
+@function double($n){
+    @return $n * 2;
+}
+
+.box7{
+    width: double(50px);
+}
+
+// map
+$map1:(color1:red, color2:green, color3:blue);
+
+.box8 {
+    color: map-keys($map1);
+    color: map-values($map1);
+    color: map-has-key($map1, color2);
+  }
+
+// warn error
+@function fn1($n) {
+    @if($n==0) {
+      @return red;
+    }@else if($n==1) {
+      @return green;
+    }@else {
+      @warn '注意看了，这样容易有问题！！';
+      // @error '出错啦，出错啦！！';
+      @return blue;
+    }
+  }
+
+  .box9{
+    color: fn1(2);
+  }
