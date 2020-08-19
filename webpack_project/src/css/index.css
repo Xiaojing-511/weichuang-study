@@ -1,0 +1,15 @@
+#div1{
+    width: 200px;
+    height: 200px;
+    background: url(../imgs/StockSnap_3VLGQNBZP2-720x405.jpg);
+    transform: rotate(45deg);
+}
+
+.a{
+    width: 200px;
+}
+
+.box1{
+    width: 200px;
+    color: pink;
+}

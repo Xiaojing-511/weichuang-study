@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .btn {
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            margin: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        #container {
+            width: 400px;
+            height: 200px;
+            background: #f2f2f2;
+            margin: 200px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+        }
+
+        #container header {
+            height: 40px;
+            line-height: 40px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+            padding: 0 20px;
+        }
+
+        .close {
+            cursor: pointer;
+        }
+
+        #container main p {
+            margin: 10px 20px;
+        }
+
+        #container footer {
+            padding: 10px 20px;
+
+        }
+
+        #container footer>button {
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            border: solid 1px #000;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <button class="btn" @click="open1">登陆</button>
+        <button class="btn" @click="open2">注册</button>
+
+        <my-component title="登陆" @close="next" v-show="btn1">
+            <p>用户名：<input type="text"></p>
+            <p>密码：<input type="password"></p>
+        </my-component>
+
+        <my-component title="注册" @close="next" v-show="btn2">
+            <p>用户名：<input type="text"></p>
+            <p>密码：<input type="password"></p>
+            <p>确认密码：<input type="password"></p>
+        </my-component>
+    </div>
+
+    <template id="tpl1">
+        <div id="container">
+            <header>
+                {{title}}
+                <span class="close" @click="next">X</span>
+            </header>
+            <main>
+                <slot></slot>
+            </main>
+            <footer>
+                <button @click="next">{{title}}</button>
+            </footer>
+        </div>
+    </template>
+
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                btn1: false,
+                btn2: false,
+            },
+            methods: {
+                open1() {
+                    this.btn1 = true;
+                    this.btn2 = false;
+                },
+                open2() {
+                    this.btn1 = false;
+                    this.btn2 = true;
+                },
+                next(){
+                    this.btn1 = false;
+                    this.btn2 = false;
+                }
+            },
+            components: {
+                'myComponent': {
+                    template: '#tpl1',
+                    props: ['title','close'],
+                    methods: {
+                        next(){
+                            this.$emit('close');
+                        }
+
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

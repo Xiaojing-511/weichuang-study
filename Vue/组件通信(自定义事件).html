@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 子组件控制父组件 -->
+    <div id="app">
+        {{count}}
+        <!-- 方法一 获取到父组件的函数 -->
+        <!-- <com1 :fn1="add1"></com1> -->
+        <!-- 方法二 自定义事件 -->
+        <com1 @add="add1"></com1>
+    </div>
+
+    <template id="tpl1">
+        <button @click="add2">
+            +++
+        </botton>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                count: 0,
+            },
+            methods: {
+                add1() {
+                    this.count++;
+                }
+            },
+            components: {
+                'com1': {
+                    template: '#tpl1',
+                    props: ['fn1'],
+                    data: function () {
+                        return {
+
+                        }
+                    },
+                    methods: {
+                        add2() {
+                            // 方法一
+                            // this.fn1();
+                            // 方法二
+                            this.$emit('add');  //使用 $emit(eventName) 触发事件
+                        }
+                    }
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

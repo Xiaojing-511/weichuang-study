@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <my-com>
+            <p slot="p1">是否需要支付额外费用? <input @click="show" type="checkbox" name="" id=""></p>
+            <ul slot="ul1" v-show="liShow">
+                <li v-for="item in list">{{item.name + '('}}{{item.price + ')'}} 
+                    <input @click="showMsg(item)" type="checkbox" name="" id="">
+                </li>
+            </ul>
+        </my-com>
+
+        <my-com :sum="sum">
+            <p slot="p1">订单费用信息：</p>
+            <ul slot="ul1">
+                <li>群力花园豪华型(400)</li>
+                <li v-for="item in list" v-show="item.detailLiShow">{{item.name + '('}}{{item.price + ')'}}</li>
+            </ul>
+        </my-com>
+
+        <p>总金额：{{sum}}</p>
+    </div>
+
+    <template id="tpl">
+        <div>
+            <!-- <slot></slot> -->
+            <slot name="p1"></slot>
+            <slot name="ul1"></slot>
+        </div>
+    </template>
+
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                sum: 400,
+                myCheck: true,
+                liShow: false,
+                 
+                list: [
+                    {
+                        name: '沙发',
+                        price: 3500,
+                        detailLiShow: false
+                    },
+                    {
+                        name: '椅子',
+                        price: 800,
+                        detailLiShow: false
+                    },
+                    {
+                        name: 'wifi',
+                        price: 100,
+                        detailLiShow: false
+                    }
+                
+                ]
+            },
+            methods: {
+                show() {
+                    this.liShow = !this.liShow;
+                },
+                showMsg(item) {
+                    item.detailLiShow = !item.detailLiShow;
+                    this.sum = 400;
+                    this.list.forEach((value) => {
+                        if(value.detailLiShow){
+                            this.sum += value.price;
+                        }
+                    });
+
+                },
+            },
+            // watch: {
+            //     myCheck: function(val){
+
+            //     },
+
+            // },
+            components: {
+                'myCom': {
+                    template: '#tpl',
+                    props: ['sum'],
+                    data: function () {
+                        return {
+                        }
+                    },
+                    methods: {
+                    },
+
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

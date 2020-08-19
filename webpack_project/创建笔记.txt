@@ -1,0 +1,98 @@
+1. 安装Webpack (要先安装node.js)
+    在编辑器中创建新项目，右键在集成终端中打开
+    命令行： 1. npm init -y  (webpack 默认的命令)
+            2. npm install -D webpack webpack-cli (推荐局部安装) //使用cnpm更快
+2. 创建文件 webpack.config.js  配置入口与出口
+3. 在package.json中添加scripts项 "build":"webpack" (方便之后重新构建  npm run build)
+
+4.  HTML文件打包（需要安装插件）  （可直接打包成html文件,将js注入进去）
+    命令行：cnpm install html-webpack-plugin --save-dev
+        const HtmlPlugin = require('html-webpack-plugin');
+        在plugins中new HtmlPlugin对象
+
+5.  重新打包 （安装插件） 删除上一次打包残留的无用文件
+    重新打包的时候能把dist目录先删除，再打包
+    命令行：cnpm install clean-webpack-plugin --save-dev
+        const {CleanWebpackPlugin} = require('clean-webpack-plugin');  //注意用解构的方式定义变量
+        在plugins中new CleanWebpackPlugin对象
+
+6. 服务与热更新（安装插件）
+    webpack-dev-server模拟一个线上环境，把我们的代码放到这样一个线上环境运行
+    他本身的功能是开启一个服务
+    额外功能：1.路径重定向
+            （为了防止出现找不到文件这样能的错误）
+            2.热更新
+            （在我们不刷新浏览器的情况下自动刷新）
+    命令行：cnpm install --save-dev webpack-dev-server
+    在devserver中配置服务与热更新
+    在package.json中添加scripts项 "dev": "webpack-dev-server"
+    命令行：npm run dev  可打开浏览器
+
+7. CSS文件打包 （css内容被打包到dist下面的index.js文件中）
+    1). 在入口js文件中引入css： import css from './css/index.css'
+    2). 命令行： 安装style-loader：用来处理css文件中的url()等
+                  npm install --save-dev style-loader 
+               安装css-loader：用来将css插入到页面的style标签
+                  npm install --save-dev css-loader
+    3). 在module中配置rules
+
+8. CSS分离 
+    命令行：npm install --save-dev mini-css-extract-plugin
+    const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+    在plugins中new MiniCssExtractPlugin对象
+    在module中修改css部分rules （use ），
+    在output中添加publicPath: 'http://localhost:8083/'解决图片路径问题
+
+9. css中引用图片
+    命令行：npm install --save-dev file-loader url-loader
+    在module中添加 rules 
+
+10. html中引用图片
+    命令行：npm install html-withimg-loader --save-dev
+    在module中添加 rules 
+
+11. Sass打包和分离
+    命令行：npm install --save-dev node-sass sass-loader
+    在js文件中导入scss文件
+    在module中添加 rules（未分离时 打包到js中） 
+    改变rules 将sass文件分离出来，打包后在css文件中
+
+12.Js代码压缩 module.exports中添加mode
+    mode: 'development' /mode: 'production'
+    生产环境：线上使用，js文件压缩成一行
+    开发环境：开发使用，js文件展开易读
+
+13.CSS3前缀
+    命令行：npm install --save-dev postcss-loader autoprefixer
+    新建文件：postcss.config.js    和  .browserslistrc 网页样式浏览器兼容解决
+    在module中修改css部分的rules
+
+14. 清除未使用的css
+    命令行：npm install --save-dev purifycss-webpack purify-css
+    const glob = require('glob');
+    const PurifyCSSPlugin = require('purifycss-webpack');
+    在plugins中new PurifyCSSPlugin对象
+
+15. babel  （es6 => es5）
+    命令行：npm install -D babel-core babel-loader @babel/core @babel/preset-env
+    在module中添加 rules 
+
+16. 开发环境 与 生产环境
+    devDependencies 存放测试代码依赖的包或构建工具的包
+    dependencies 存放项目或组件代码中依赖到的
+    安装全部项目依赖包：npm install
+
+17. 打包第三方库 （jquery）
+    命令行：npm install --save jquery
+    在js中引入 import $ from 'jquery'
+    const webpack = require('webpack')
+    在plugins中new webpack.ProvidePlugin对象
+
+
+
+
+
+
+
+
+

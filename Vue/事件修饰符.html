@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            width: 400px;
+            height: 400px;
+            background: pink;
+            margin: 100px auto;
+        }
+        #container{
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- .stop 阻止事件冒泡 -->
+    <!-- .prevent 阻止默认行为 -->
+    <div id="app" @click="changeA">
+        <div id="container" @click.stop="change"></div>
+        <a @click.prevent="preventA" href="http://www.baidu.com">baidu</a>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data: {
+
+            },
+            methods: {
+                change(){
+                    console.log('#container');
+                },
+                changeA(){
+                    console.log('#app');
+                },
+                preventA(){
+                    console.log('prevent a ');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

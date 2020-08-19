@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-model    双向数据绑定，只能用于表单元素  -->
+        <input type="text" v-model="msg">
+        <textarea name="" id="" cols="30" rows="10">
+            {{msg}}
+        </textarea>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                msg: '',
+
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

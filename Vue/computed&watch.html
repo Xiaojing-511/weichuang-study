@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性和侦听器（监听属性）</title>
+    <style>
+        #box{
+            width: 400px;
+            height: 300px;
+            border: 1px solid #000;
+        }
+        input{
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 调用计算属性不加括号 -->
+        <p>{{showName}}</p>
+        <p>{{a}}</p>
+        <button @click="change">change</button>
+        <div id="box">
+            <p>斤数转换器</p>
+            <input type="text" v-model="kg">
+            <input type="text" v-model="g">
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                firstName : 'Green',
+                lastName: 'Rachel',
+                a: 0,
+                g: 0,
+                kg : 0,
+            },
+            methods: {
+                change(){
+                    this.a += 1;
+                }
+            },
+            // 计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值
+            // 计算属性一定要有返回值
+            computed: {
+                showName(){
+                    return this.lastName + ' ' + this.firstName;
+                }
+            },
+            // watch:监测属性的变化，被监测的属性一旦发生改变就会触发对应的方法
+            watch: {
+                a: function(newVal,oldVal){
+                    console.log(oldVal + '->' +newVal);
+                },
+                kg: function(val){
+                    this.g = val*2;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

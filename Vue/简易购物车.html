@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app {
+            width: 400px;
+            margin: 50px auto;
+        }
+
+        ul {
+            margin-top: 10px;
+            border-bottom: 1px solid #000;
+        }
+
+        .list {
+            height: 40px;
+            line-height: 40px;
+            margin-bottom: 10px;
+            background: pink;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+
+        }
+
+        .active {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>简易购物车</p>
+        <ul>
+            <li v-bind:class="['list',(item.isActive)? 'active' : '']" v-for="item in list" @click="change(item)">
+                <span>{{item.name}}</span>
+                <span>{{item.price}}</span>
+            </li>
+        </ul>
+        <p>总价：{{sum()}}</p>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    {
+                        name: '衣服',
+                        price: 999,
+                        isActive: false
+                    },
+                    {
+                        name: '衣服',
+                        price: 999,
+                        isActive: false
+                    },
+                    {
+                        name: '衣服',
+                        price: 999,
+                        isActive: false
+                    },
+                    {
+                        name: '衣服',
+                        price: 999,
+                        isActive: false
+                    },
+                ]
+
+            },
+            methods: {
+                change(item) {
+                    item.isActive = !item.isActive;
+                },
+                sum() {
+                    let count = 0;
+                    this.list.forEach((obj, index) => {
+                        if (obj.isActive) {
+                            count += obj.price;
+                        }
+                    });
+                    return count;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

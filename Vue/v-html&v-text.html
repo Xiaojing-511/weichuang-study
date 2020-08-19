@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        
+        <!-- {{}}和v-text的区别：渲染方式有区别，{{}}能看到改变的过程 -->
+        <!-- 先出现{{msg}} 后转化为msg的值 -->
+        <p>{{msg}}</p>
+        <!-- 直接出现msg的值 -->
+        <p v-text="msg"></p>
+        <!-- 可以插入html代码 -->
+        <p v-html="msg"></p>
+        <p v-html="msg2"></p>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                msg: "i am a msg",
+                msg2: '<a href="http:\\www.baidu.com">baidu</a>'
+
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+</html>

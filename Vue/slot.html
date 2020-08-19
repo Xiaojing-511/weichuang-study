@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            color:pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <tpl1>
+            <!-- 插槽 -->
+            <!-- <slot></slot> -->
+            <p slot="slt1">hello world</p>
+            <p slot="slt2">my tpl1</p>
+        </tpl1>
+    </div>
+
+    <template id="my-tpl1">
+        <div class="box">
+            <slot name="slt2"></slot>
+            <h1>-------</h1>
+            <slot name="slt1"></slot>
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            components: {
+                'tpl1': {
+                    template: '#my-tpl1',
+                }
+            }
+        })
+    </script>
+</body>
+</html>

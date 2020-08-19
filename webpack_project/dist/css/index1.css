@@ -1,0 +1,7 @@
+#div1 {
+  width: 200px;
+  height: 200px;
+  background: url(http://localhost:8083/images/cfd6ea11c3b00057703bfd21fa79a470.jpg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

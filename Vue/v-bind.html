@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            background: #ccc;
+        }
+
+        .active {
+            background: pink;
+        }
+        p{
+            color: aquamarine;
+            width: 200px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-bind:class="{active:flag}">
+        <button @click="change" >换颜色</button>
+        <p v-bind:title="message"></p>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                flag: false,
+                message: '页面加载与' + new Date().toLocaleString(),
+
+            },
+            methods: {
+                change(){
+                    this.flag = !this.flag;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

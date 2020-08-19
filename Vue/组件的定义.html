@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            width: 200px;
+            height: 100px;
+            background: pink;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 引入全局组件 -->
+        <!-- 若传的值是常量， title="我的组件" -->
+        <!-- 若传的是变量，   :msg="msg" -->
+        <btn-counter title="我的组件1" :count1="count"></btn-counter>
+        
+        <!-- 引入局部组件 -->
+        <vm-component1 :count="count"></vm-component1>
+    </div>
+
+    <div id="box">
+        <btn-counter title="我的组件1" :count="count"></btn-counter>
+    </div>
+
+    <template id="tpl1">
+        <div>
+            {{title}} {{count}} {{msg}}!
+        </div>
+    </template>
+
+    <script src="./vue.js"></script>
+    <script>
+        // 组件是可复用的 Vue 实例，且带有一个名字
+        // 分为 全局组件和局部组建
+
+        //  全局组件  可在任意一个被挂载的区域使用
+
+        // let tpl1 = '<div>{{title}}  {{count}} !</div>';
+        Vue.component('btnCounter', {
+            // template: '<div>{{title}}  {{count}} !</div>',
+            // template: tpl1,
+
+            template: '#tpl1',  //推荐此方法
+
+            /*  
+                通过props来接收父组件传的值:
+            */
+            props: ['title', 'count1'],
+            // 一个组件的 data 选项必须是一个函数  因此每个实例可以维护一份被返回对象的独立的拷贝        
+            data: function(){
+                return {
+                    msg: 'i am a message!',
+                }
+            }
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                count: 0,
+            },
+            components: {
+                // 局部组件  只能在定义它的实例的挂载区域使用
+                'vmComponent1': {
+                    template: '<button>{{count}} {{time}}</button>',
+                    props: ['count'],
+                    data: function(){
+                        return {
+                            time: '次',
+                        }
+                    },
+            },
+
+        },
+        })
+
+        let vm2 = new Vue({
+            el: '#box',
+        })
+    </script>
+</body>
+
+</html>
