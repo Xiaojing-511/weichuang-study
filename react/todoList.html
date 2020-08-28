@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+    <script type="text/babel">
+        class Main extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+                    list: [
+                        {
+                            id: 1001,
+                            title: "好好学习",
+                            isActive: false
+                        },
+                        {
+                            id: 1002,
+                            title: "还是要好好学习",
+                            isActive: false
+                        },
+                        {
+                            id: 1003,
+                            title: "说的对",
+                            isActive: false
+                        }
+                    ],
+                    showList: [
+                        {
+                            id: 1001,
+                            title: "好好学习",
+                            isActive: false
+                        },
+                        {
+                            id: 1002,
+                            title: "还是要好好学习",
+                            isActive: false
+                        },
+                        {
+                            id: 1003,
+                            title: "说的对",
+                            isActive: false
+                        }
+                    ]
+                }
+
+                this.changeFn = this.changeFn.bind(this)
+                this.delFn = this.delFn.bind(this)
+                this.addFn = this.addFn.bind(this)
+                this.searchFn = this.searchFn.bind(this)
+            }
+            changeFn(id) {
+                this.state.list.forEach(obj => {
+                    if (obj.id == id) {
+                        obj.isActive = !obj.isActive
+                    }
+                })
+                this.setState({
+                    list: this.state.list,
+                    showList: list
+                })
+            }
+            delFn(id) {
+                let list = this.state.list.filter(obj => {
+                    return obj.id != id
+                })
+                this.setState({
+                    list,
+                    showList: list
+
+                })
+
+            }
+            addFn(value) {
+                let list = this.state.list;
+                list.push({
+                    id: new Date().getTime(),
+                    title: value,
+                    isActive: false
+                })
+                this.setState({
+                    list,
+                    showList: list
+
+                })
+            }
+            searchFn(val){
+                let list = this.state.list.filter(obj=>{
+                    return obj.title.includes(val);
+                })
+                this.setState({
+                    showList: list,
+                })
+            }
+            render() {
+                return (
+                    <div>
+                        <h1>React todoList</h1>
+                        <Search searchFn={this.searchFn}/>
+                        <Add addFn={this.addFn} />
+                        <List changeFn={this.changeFn} delFn={this.delFn} list={this.state.showList} />
+                    </div>
+                )
+            }
+        }
+
+        // Search
+        class Search extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+
+                }
+
+                this.search = this.search.bind(this)
+            }
+            search(){
+                this.props.searchFn(this.refs.searchValue.value)
+            }
+            render() {
+                return (
+                    <div>
+                        搜索：
+                        <input ref="searchValue" onKeyUp={this.search} type="text" />
+                    </div>
+                )
+            }
+        }
+
+        // Add
+        class Add extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+
+                }
+
+                this.add = this.add.bind(this)
+            }
+            add() {
+                // console.log(this.refs.iptValue);
+                this.props.addFn(this.refs.iptValue.value);
+                this.refs.iptValue.value = ''
+            }
+            render() {
+                return (
+                    <div>
+                        添加：
+                        <input ref="iptValue" type="text" />
+                        <button onClick={this.add}>添加</button>
+                    </div>
+                )
+            }
+        }
+
+        // List
+        class List extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+
+                }
+
+                // this.change = this.change.bind(this)
+            }
+            change(id) {
+                this.props.changeFn(id);
+            }
+            del(id) {
+                this.props.delFn(id);
+            }
+            render() {
+                return (
+                    <div>
+                        <ul>{
+                            this.props.list.map(obj => (
+                                <li className={obj.isActive ? 'active' : ''} key={obj.id}>
+                                    <input type="checkbox" onChange={this.change.bind(this, obj.id)} checked={obj.isActive} />
+                                    <span>{obj.title}</span>
+                                    <button onClick={this.del.bind(this, obj.id)}>删除</button>
+                                </li>
+                            ))
+
+                        }
+                        </ul>
+
+                    </div>
+                )
+            }
+        }
+
+
+        ReactDOM.render(<Main />
+            , document.getElementById('app'))
+    </script>
+</body>
+
+</html>
