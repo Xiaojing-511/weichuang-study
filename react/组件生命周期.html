@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+    <script type="text/babel">
+        let root = document.getElementById('app');
+
+        class Com extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+                    start: false,
+                }
+
+                this.clickBtn = this.clickBtn.bind(this)
+                this.stop = this.stop.bind(this)
+            }
+            clickBtn() {
+                this.setState({
+                    start: true
+                })
+            }
+            stop() {
+                this.setState({
+                    start: false
+                })
+            }
+            render() {
+                return (
+                    <div>
+                        <button onClick={this.clickBtn}>获取验证码</button>
+                        {this.state.start ? <Child time={2} end={this.stop}></Child> : null}
+
+                    </div>
+                )
+            }
+        }
+
+        class Child extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+                    num: -1,
+                }
+
+                // this.handleEvent = this.handleEvent.bind(this)
+            }
+            //会在调用 render 方法之前调用，并且在初始挂载及后 续更新时都会被调用。
+            // 它应返回一个对象来更新 state，如果返回 null 则不更新任何内容 
+            static getDerivedStateFromProps(nextProps, nextState) {  //render后的状态和属性
+                if(nextState.num == -1){
+                    console.log("替换为"+nextProps.time);
+                    return {
+                        num : nextProps.time
+                    }
+                }else{
+                    return null;
+                }
+            }
+            // 渲染
+            render() {
+                console.log("render");
+                return (
+                    <div>
+                        <p>{this.state.num}秒后重试</p>
+                    </div>
+                )
+            }
+            // 在第一次渲染后调用
+            componentDidMount() {
+                this.timer = setInterval(() => {
+                    this.setState({
+                        num: this.state.num - 1
+                    })
+
+
+                }, 1000);
+            }
+            // 返回一个布尔值。在组件接收到新的props或者state时被调用。
+            // 在初始化时或者使用forceUpdate时不被调用。
+            shouldComponentUpdate(nextProps, nextState) {
+                console.log(666666);
+                if (nextState.num <= 0) {  //更新之后的状态
+                    this.props.end();
+                    return false;
+                }
+                return true
+            }
+
+            // 会在更新后会被立即调用。首次渲染不会执行此方法。
+            componentDidUpdate(prevProps, prevState) {
+                console.log(prevState);  //更新之前的状态
+                console.log("update...");
+            }
+            // 在组件从 DOM 中移除之前立刻被调用
+            componentWillUnmount() {
+                clearInterval(this.timer);
+                console.log("is end");
+            }
+
+
+
+        }
+        ReactDOM.render(
+            <Com />
+            , root);
+    </script>
+</body>
+
+</html>

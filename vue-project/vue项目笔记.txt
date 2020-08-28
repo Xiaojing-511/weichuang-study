@@ -1,0 +1,31 @@
+Vue Cli
+1.安装vue-cli（需要全局安装）
+    命令行： npm install @vue/cli -g
+    检查版本号：vue -V
+2.创建项目
+    命令行： vue creat objectName(项目名) 空格键选择插件
+    图形化创建： vue ui
+3.启动项目
+    命令行：npm run serve
+
+Vue Router
+Vue Router 是 Vue.js 官方的路由管理器。
+它和 Vue.js 的核心深度集成，让构建单页面应用变得易如反掌
+1.安装 （在vue-cli中已经包含了vue-router）
+2.在views目录下新建 Test.vue 组件
+    在index.js中引入组件并定义路由
+    1.import Test from '../views/Test.vue'
+    2.在routes中添加对象{path:'/test, component: Test,}
+
+    <!-- 在App.vue中使用 router-link 组件来导航. -->
+    <!-- 通过传入 `to` 属性指定链接. -->
+    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+    3. <router-link to="/test">it is a test</router-link>
+
+    <!-- 路由出口 -->
+    <!-- 路由匹配到的组件将渲染在这里 -->
+    4.<router-view></router-view>
+
+3.子路由
+    1.在index.js定义组件下添加children：[ {}]
+    

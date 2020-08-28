@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <div id="app1"></div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+
+    <script type="text/babel">
+        let root = document.getElementById('app');
+        // 都是在子组件标签中定义
+        // 父到子  通过ref将子组件传给父组件 通过this.refs. 获得
+        // 子到父  通过属性传参
+
+        // 父到子
+        // 子组件
+        class Child extends React.Component {
+            constructor(params) {
+                super(params)
+
+                this.state = {
+                    num: 0,
+                }
+                // this.add = this.add.bind(this)
+            }
+            add() {
+                this.setState({
+                    num: this.state.num + 1,
+                })
+            }
+            render() {
+                return (
+
+                    <div>
+                        <button onClick={this.add.bind(this)}>num++</button>
+                        <p>{this.state.num}</p>
+                    </div>
+                )
+
+
+            }
+        }
+        // 父组件
+        class Parent extends React.Component {
+            constructor(params) {
+                super(params)
+
+                this.state = {
+                    num: 0,
+                }
+                // this.add = this.add.bind(this)
+            }
+            addFn() {
+                console.log(this.refs.addNum.value);
+                // console.log(this.refs.child1);
+                this.refs.child1.add();
+            }
+            render() {
+                return (
+                    <div>
+                        <label htmlFor="ipt">姓名：</label>
+                        <input id="ipt" ref="addNum" type="text" />
+                        <button onClick={this.addFn.bind(this)}>++子组件中的</button>
+                        <Child ref="child1" />
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Parent></Parent>
+            , root)
+
+        // 子到父
+        class Child1 extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+                    num: 0,
+
+                }
+
+                this.add = this.add.bind(this)
+            }
+            add() {
+                // console.log(this.props.parent);
+                // this.props.parent.addNumber();
+                this.props.addNumber();
+                
+            }
+            render() {
+                return (
+                    <div>
+                        <button onClick={this.add}>父组件++</button>
+                    </div>
+                )
+            }
+
+        }
+
+        class Parent1 extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+                    number: 0
+
+                }
+
+                this.addNumber = this.addNumber.bind(this)
+            }
+            addNumber() {
+                this.setState({
+                    number: this.state.number + 1,
+                })
+            }
+            render() {
+                return (
+                    <div>
+                        <Child1 parent={this} addNumber={this.addNumber}></Child1>
+                        <h1>{this.state.number}</h1>
+                    </div>
+                )
+            }
+        }
+        let root1 = document.getElementById('app1');
+        ReactDOM.render(
+            <Parent1 />
+            , root1);
+    </script>
+</body>
+
+</html>

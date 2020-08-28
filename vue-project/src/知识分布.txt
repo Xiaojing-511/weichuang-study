@@ -1,0 +1,10 @@
+编程式导航： User.vue 和 About.vue
+
+动态路由匹配 路由参数 ：App.vue  router/index.js
+
+嵌套路由 子路由 ： router/index.js  Course.vue
+
+重定向和别名 ： App.vue  router/index.js
+
+路由组件传参（vue-router）:Vue/组件定义 组件通信
+

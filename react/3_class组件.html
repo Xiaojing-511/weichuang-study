@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+
+    <script type="text/babel">
+        let root = document.getElementById('app');
+        /* 
+        class组件（有状态组件）：
+        class组件中必须要有render方法
+        通过this.props来接收引用组件时传递的所有的参数，props本身是一个对象
+        props.children属性来获取调用这个组件的开始标签和结束标签中之间的内容
+        */
+
+        // 注意要改变this的指向   两种方法 
+        // 视图层与逻辑层分离  使用this.setState 来更新视图层
+        // props接收的属性是只读的，不可以修改。会报错
+        class Com1 extends React.Component {
+            constructor(params) {
+                super(params)
+
+                // 和小程序当中的data一样
+                // 组件状态的初始化
+                this.state = {
+                    num: 0,
+                }
+                //1.改变自定义事件里的this指向 2.在定义事件时
+                this.add = this.add.bind(this)
+            }
+            add() {
+                console.log(this.state.num);
+                this.setState({
+                    num: this.state.num + 1,
+                })
+
+
+            }
+            clickBaidu(){
+                //阻止事件的默认行为
+                event.preventDefault();
+            }
+            render() {
+                return (
+                    <div>
+                        <p>{this.state.num}</p>
+                        <button onClick={this.add.bind(this)}>+1</button>
+                        <p>{this.props.name + "今年" + this.props.age + "了！！！"}</p>
+                        <a onClick={this.clickBaidu} href="https://www.baidu.com">baidu</a>
+                        {this.props.children}
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+
+            <Com1 name="lisi" age="23">
+                <p>我是在标签中插入得一个p</p>
+            </Com1>
+            , root)
+    </script>
+
+
+</body>
+
+</html>

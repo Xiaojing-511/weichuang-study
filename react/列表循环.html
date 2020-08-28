@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+    <script type="text/babel">
+
+        class Test extends React.Component{
+            constructor(props) {
+                super(props)
+            
+                this.state = {
+                    list: [1,2,3,4,5],
+                }
+            
+                // this.handleEvent = this.handleEvent.bind(this)
+            }
+            render() {
+                return (
+                    <div>
+                        <ul>
+                            {this.state.list.map((value,index)=>(
+                                <li key={index}>{value}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )
+            }
+            
+        }
+        let root = document.getElementById('app');
+        ReactDOM.render(
+            <Test />
+        ,root);
+    </script>
+
+</body>
+</html>

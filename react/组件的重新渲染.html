@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+    <script type="text/babel">
+        // 组件的重新渲染
+        // 1.this.setState时
+        // 2.props改变时
+        // 3.forceUpdate() 不经常用
+        class Child extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+
+                }
+
+                // this.handleEvent = this.handleEvent.bind(this)
+            }
+            render() {
+                return (
+                    <div>
+                        <p>{this.props.index}</p>
+
+                    </div>
+                )
+            }
+
+        }
+
+        class Parent extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+                    num: 0,
+                    n: 666
+                }
+
+                this.add = this.add.bind(this)
+                this.add1 = this.add1.bind(this)
+                this.force = this.force.bind(this)
+            }
+            add() {
+                this.setState({
+                    num: this.state.num + 1,
+                })
+            }
+            add1() {
+                this.state.n++;
+            }
+            force() {
+                this.forceUpdate();
+            }
+            render() {
+                return (
+                    <div>
+                        <button onClick={this.add1}>++但不更新</button>
+                        <p>{this.state.n+"~~~"}</p>
+                        <button onClick={this.force}>强制更新</button>
+                        <button onClick={this.add}>++</button>
+                        <p>{this.state.num}</p>
+                        <Child index={this.state.num}></Child>
+                    </div>
+                )
+            }
+
+        }
+        let root = document.getElementById('app');
+        ReactDOM.render(
+            <Parent />
+            , root
+        )
+    </script>
+</body>
+
+</html>
