@@ -1,0 +1,24 @@
+创建项目
+npx create-react-app objectName
+
+安装route
+cnpm install react-router-dom --save
+在index.js中引入Router 并包裹App （即可在全局用router）
+
+安装antd
+cnpm install antd --save
+修改 src/App.css，在文件顶部引入 antd/dist/antd.css
+@import '~antd/dist/antd.css';
+
+安装mock  (假数据) 只在开发时需要 不会打包
+npm install mockjs --save-dev
+
+安装axios /react-axios
+npm install axios --save
+npm install react-axios --save
+
+
+启动
+npm start
+
+注意： 使用样式 需要在js中引入css
