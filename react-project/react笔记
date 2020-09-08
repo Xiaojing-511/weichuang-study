@@ -17,6 +17,10 @@ npm install mockjs --save-dev
 npm install axios --save
 npm install react-axios --save
 
+安装react-redux (要基于redux 所以也需要安装redux)
+npm install redux react-redux --save
+在index.js中引入组件Provider 并将App包裹 则App中就都可以使用store
+新建store.js 从redux中引入createStore
 
 启动
 npm start
